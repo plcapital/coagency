@@ -1,0 +1,7 @@
+extends layout
+block content
+    h1= title
+    form#formCreatePost(name="createpost",method="post",action="/createpost")
+        input#inputTitle(type="text", placeholder="postTitle", name="postTitle")
+        input#inputDescription(type="text", placeholder="postDescription", name="postDescription")
+        button#buttonSubmit(type="submit") submit

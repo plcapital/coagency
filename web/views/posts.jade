@@ -1,0 +1,9 @@
+extends layout
+block content
+    h1.
+        Postings
+    ul
+        each post, i in postlist
+            li= post.title
+                | &nbsp;-&nbsp;
+                =post.description
