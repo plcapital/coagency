@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  if loggedInUser
+    p Hello #{loggedInUser.name}, welcome to #{title}
+  else
+    p Welcome to #{title}
+  p
+    a(href="/login") login<br />
+    a(href="/userlist") current users<br />
+    a(href="/posts") current posts<br />
+    a(href="/newpost") create new post<br />
+    a(href="/logout") logout
