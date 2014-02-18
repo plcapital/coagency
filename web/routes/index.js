@@ -3,7 +3,10 @@
  */
 
 exports.index = function (req, res) {
-    res.render('index', { title: 'Agents' });
+    res.render('index', {
+        title: 'Agents',
+        "loggedInUser": req.session.user
+    });
 };
 
 exports.userlist = function (modelProvider) {
