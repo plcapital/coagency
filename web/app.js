@@ -3,13 +3,14 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var login = require('./routes/login');
 var http = require('http');
-var path = require('path');
-var mongo = require('mongodb');
 var mongoStore = require('connect-mongo')(express);
+
+var routes = require('./routes');
+var login = require('./routes/login');
+var post = require('./routes/post');
+var user = require('./routes/user');
+var path = require('path');
 
 var app = express();
 
@@ -28,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
+
+// TODO move string out into resources/bundles
 
 // TODO move this session configuration to a better home
 var conf = {
@@ -53,15 +56,14 @@ app.configure(function () {
 var modelProvider = require('./models/modelprovider').modelProvider;
 var modelProvider = new modelProvider(); // TODO rename (a bit confusing)?
 
-app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/userlist', routes.userlist(modelProvider));
-app.get('/posts', routes.posts(modelProvider));
-app.get('/newpost', routes.newpost);
+app.get('/', routes.indexPage);
 app.get('/login', login.loginPage);
+app.get('/posts', post.listPage(modelProvider));
+app.get('/createPost', post.createPage);
+app.get('/users', user.listPage(modelProvider));
 
 app.post('/login', login.loginAuthentication);
-app.post('/createpost', routes.createpost(modelProvider));
+app.post('/createPost', post.create(modelProvider));
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
