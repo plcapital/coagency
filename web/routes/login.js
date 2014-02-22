@@ -13,6 +13,14 @@ exports.loginPage = function (req, res) {
     res.render('login');
 };
 
+exports.logout = function (req, res) {
+    req.session.destroy();
+
+    res.render('login', {
+        "infoMsg": "You are now logged out."
+    });
+};
+
 exports.loginAuthentication = function (req, res) {
     authenticate(req.body.username, req.body.password, function (err, user) {
         if (user) {

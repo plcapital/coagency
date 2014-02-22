@@ -58,6 +58,7 @@ var modelProvider = new modelProvider(); // TODO rename (a bit confusing)?
 
 app.get('/', routes.indexPage);
 app.get('/login', login.loginPage);
+app.get('/logout', login.logout);
 app.get('/posts', post.listPage(modelProvider));
 app.get('/createPost', post.createPage);
 app.get('/users', user.listPage(modelProvider));

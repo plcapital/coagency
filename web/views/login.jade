@@ -4,6 +4,8 @@ block content
         Login
     if errorMsg
         p= errorMsg
+    if infoMsg
+        p= infoMsg
     form#formLogin(name="login",method="post",action="/login")
         input#inputUsername(type="text", placeholder="username", name="username")
         input#inputPassword(type="text", placeholder="password", name="password")
