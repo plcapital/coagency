@@ -7,24 +7,24 @@ block content
             option(value="general") General
         | <br />
         | *Type:
-        input#inputType(type="radio", value="forSale", name="postType")
+        input#inputListingType(type="radio", value="forSale", name="listingType")
         | For Sale
-        input#inputType(type="radio", value="forRent", name="postType")
+        input#inputListingType(type="radio", value="forRent", name="listingType")
         | For Rent
         | <br />
         | Auction:
-        input#inputIsAuction(type="checkbox", value="true", name="postIsAuction")
+        input#inputIsAuction(type="checkbox", value="true", name="isAuction")
         // would like to use native HTML5 date input, but unfortunately browser support is lacking
-        input#inputAuctionDate(type="text", placeholder="dd/MM/yyyy time", name="postAuctionDate")
+        input#inputAuctionDate(type="text", placeholder="dd/MM/yyyy time", name="auctionDate")
         | <br />
         | *Co-Broke Listing:
         select#inputCoBroke(name="coBroke")
             option(value="coBroke") Co-Broke
         | <br />
         | *Listing Category:
-        input#inputCategory(type="radio", value="residential", name="postCategory")
+        input#inputCategory(type="radio", value="residential", name="listingCategory")
         | Residential
-        input#inputCategory(type="radio", value="commercial", name="postCategory")
+        input#inputCategory(type="radio", value="commercial", name="listingCategory")
         | Commercial
         | <br />
         | *Group Type:
@@ -36,20 +36,44 @@ block content
             option(value="terrace") 2-sty Terrace/Link House
         | <br />
         | Built Up:
-        input#inputBuiltUp(type="text", name="postBuiltUp")
+        input#inputBuiltUp(type="text", name="builtUp")
         | <br />
         | Land Area:
-        input#inputLandArea(type="text", name="postLandArea")
+        input#inputLandArea(type="text", name="landArea")
         | <br />
         | Size Measure Code:
         select#inputSizeMeasure(name="sizeMeasure")
             option(value="squareFeet") Square Feet
         | <br />
         | *Asking Price:
-        input#inputAskingPrice(type="text", name="postAskingPrice")
+        input#inputAskingPrice(type="text", name="askingPrice")
         | <br />
         | *Asking Price per (sq. ft or sq. m):
-        input#inputAskingPricePer(type="text", name="postAskingPricePer")
+        input#inputAskingPricePer(type="text", name="askingPricePer")
+        | <br />
+        | Bedrooms:
+        select#inputBedrooms(name="bedrooms")
+            option(value="4") 4
+        | <br />
+        | Bathrooms:
+        select#inputBedrooms(name="bathrooms")
+            option(value="3") 3
+        | <br />
+        | Tenure:
+        select#inputTenure(name="tenure")
+            option(value="Leasehold") Leasehold
+        | <br />
+        | Direction:
+        select#inputDirection(name="direction")
+            option(value="unknown") Unknown
+        | <br />
+        | Occupied:
+        select#inputOccupied(name="occupied")
+            option(value="vacant") Vacant
+        | <br />
+        | Unit Type:
+        select#inputUnitType(name="unitType")
+            option(value="intermediate") Intermediate
         | <br />
         | <br />
         input#inputTitle(type="text", placeholder="title", name="postTitle")
