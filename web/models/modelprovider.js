@@ -5,16 +5,16 @@
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/agents');
 
-var schema = mongoose.Schema;
-var objectId = schema.ObjectId;
+var Schema = mongoose.Schema;
+var objectId = Schema.ObjectId;
 
-// schema definitions
-var usersSchema = new schema({
+// Schema definitions
+var usersSchema = new Schema({
     username: String,
     email: String
 });
 
-var postsSchema = new schema({
+var postsSchema = new Schema({
     title: String,
     description: String
 });

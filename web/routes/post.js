@@ -30,10 +30,10 @@ exports.create = function (modelProvider) {
         var postTitle = req.body.postTitle;
         var postDescription = req.body.postDescription;
 
-        var postModel = modelProvider.getModelByName('posts');
+        var PostModel = modelProvider.getModelByName('posts');
 
         // Submit to the DB
-        var post = new postModel({
+        var post = new PostModel({
             title: postTitle,
             description: postDescription
         });

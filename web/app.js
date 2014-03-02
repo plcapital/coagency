@@ -4,7 +4,7 @@
 
 var express = require('express');
 var http = require('http');
-var mongoStore = require('connect-mongo')(express);
+var MongoStore = require('connect-mongo')(express);
 
 var routes = require('./routes');
 var login = require('./routes/login');
@@ -46,15 +46,15 @@ app.configure(function () {
     app.use(express.session({
         secret: conf.secret,
         maxAge: new Date(Date.now() + 3600000),
-        store: new mongoStore(conf.db)
+        store: new MongoStore(conf.db)
     }));
     // important that this comes after session management
     // TODO why?
     app.use(app.router);
 });
 
-var modelProvider = require('./models/modelprovider').modelProvider;
-var modelProvider = new modelProvider(); // TODO rename (a bit confusing)?
+var ModelProvider = require('./models/modelprovider').modelProvider;
+var modelProvider = new ModelProvider();
 
 app.get('/', routes.indexPage);
 app.get('/login', login.loginPage);
