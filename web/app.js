@@ -7,6 +7,7 @@ var http = require('http');
 var MongoStore = require('connect-mongo')(express);
 
 var routes = require('./routes');
+var agency = require('./routes/agency');
 var login = require('./routes/login');
 var post = require('./routes/post');
 var user = require('./routes/user');
@@ -57,12 +58,14 @@ var ModelProvider = require('./models/modelprovider').modelProvider;
 var modelProvider = new ModelProvider();
 
 app.get('/', routes.indexPage);
+app.get('/createAgency', agency.createPage);
 app.get('/login', login.loginPage);
 app.get('/logout', login.logout);
 app.get('/posts', post.listPage(modelProvider));
 app.get('/createPost', post.createPage);
 app.get('/users', user.listPage(modelProvider));
 
+app.post('/createAgency', agency.create(modelProvider));
 app.post('/login', login.loginAuthentication);
 app.post('/createPost', post.create(modelProvider));
 

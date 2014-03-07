@@ -2,6 +2,8 @@
  * Created by kohei on 2/02/2014.
  */
 
+var agency = require('./agency');
+
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/agents');
 
@@ -22,6 +24,7 @@ var postsSchema = new Schema({
 // register models
 mongoose.model('users', usersSchema);
 mongoose.model('posts', postsSchema);
+mongoose.model('agency', agency.agencySchema);
 
 modelProvider = function () {
 };

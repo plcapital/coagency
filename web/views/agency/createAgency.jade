@@ -1,0 +1,11 @@
+extends ../layout
+block content
+    h1= title
+    form#formCreateAgency(name="createAgency", method="post", action="/createAgency")
+        | *Name:
+        input#inputName(type="text", placeholder="Name", name="agencyName")
+        | <br>
+        | *Phone:
+        input#inputPhone(type="text", placeholder="+60123456789", name="agencyPhone")
+        | <br>
+        button#buttonSubmit(type="submit") submit
