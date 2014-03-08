@@ -1,7 +1,3 @@
-/**
- * Created by kohei on 2/02/2014.
- */
-
 var agency = require('./agency');
 var group = require('./group');
 var post = require('./post');

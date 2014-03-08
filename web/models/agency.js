@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var agencySchema = new Schema({
-    name: String,
     administrator: ObjectId,
+    name: String,
     phone: String
 });
 
