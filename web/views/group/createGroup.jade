@@ -1,0 +1,11 @@
+extends ../layout
+block content
+    h1= title
+    form#formCreateGroup(name="createGroup", method="post", action="/createGroup")
+        | *Name:
+        input#inputName(type="text", placeholder="Name", name="groupName")
+        | <br>
+        | *Description:
+        input#inputDescription(type="text", placeholder="Description", name="groupDescription")
+        | <br>
+        button#buttonSubmit(type="submit") submit

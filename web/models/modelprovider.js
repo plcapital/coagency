@@ -3,6 +3,7 @@
  */
 
 var agency = require('./agency');
+var group = require('./group');
 
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/agents');
@@ -25,6 +26,7 @@ var postsSchema = new Schema({
 mongoose.model('users', usersSchema);
 mongoose.model('posts', postsSchema);
 mongoose.model('agency', agency.agencySchema);
+mongoose.model('group', group.groupSchema);
 
 modelProvider = function () {
 };
