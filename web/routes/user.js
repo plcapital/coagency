@@ -4,7 +4,7 @@
 
 exports.listPage = function (modelProvider) {
     return function (req, res) {
-        var userModel = modelProvider.getModelByName('users');
+        var userModel = modelProvider.getModelByName('user');
 
         userModel.find(function (err, users) {
             if (err) {

@@ -4,7 +4,7 @@
 
 exports.listPage = function (modelProvider) {
     return function (req, res) {
-        var postModel = modelProvider.getModelByName('posts');
+        var postModel = modelProvider.getModelByName('post');
 
         postModel.find(function (err, posts) {
             if (err) {
@@ -30,7 +30,7 @@ exports.create = function (modelProvider) {
         var postTitle = req.body.postTitle;
         var postDescription = req.body.postDescription;
 
-        var PostModel = modelProvider.getModelByName('posts');
+        var PostModel = modelProvider.getModelByName('post');
 
         // Submit to the DB
         var post = new PostModel({

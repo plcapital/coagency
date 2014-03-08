@@ -4,29 +4,17 @@
 
 var agency = require('./agency');
 var group = require('./group');
+var post = require('./post');
+var user = require('./user');
 
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/agents');
 
-var Schema = mongoose.Schema;
-var objectId = Schema.ObjectId;
-
-// Schema definitions
-var usersSchema = new Schema({
-    username: String,
-    email: String
-});
-
-var postsSchema = new Schema({
-    title: String,
-    description: String
-});
-
 // register models
-mongoose.model('users', usersSchema);
-mongoose.model('posts', postsSchema);
 mongoose.model('agency', agency.agencySchema);
 mongoose.model('group', group.groupSchema);
+mongoose.model('post', post.postSchema);
+mongoose.model('user', user.userSchema);
 
 modelProvider = function () {
 };
