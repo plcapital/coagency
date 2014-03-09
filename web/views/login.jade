@@ -1,4 +1,4 @@
-extends layout
+extends basicLayout
 block content
     h1.
         Login
@@ -6,7 +6,11 @@ block content
         p= errorMsg
     if infoMsg
         p= infoMsg
-    form#formLogin(name="login",method="post",action="/login")
-        input#inputUsername(type="text", placeholder="username", name="username")
-        input#inputPassword(type="text", placeholder="password", name="password")
-        button#buttonLogin(type="submit") login
+    form#formLogin(action="/login", class="basic-form", method="post", name="login")
+        div#divUsername(class="basic-input")
+            label#labelUsername(for="username") Username
+            input#inputUsername(type="text", name="username")
+        div#divPassword(class="basic-input")
+            label#labelPassword(for="password") Password
+            input#inputPassword(type="text", name="password")
+        button#buttonLogin(type="submit") Login
