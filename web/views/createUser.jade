@@ -1,0 +1,9 @@
+extends layout
+block content
+    h1= title
+    form#formCreateUser(name="createUser", method="post", action="/createUser")
+        | *Username:
+        input#inputUsername(name="username", type="text")
+        | *Email:
+        input#inputEmail(name="email", type="text")
+        button#buttonRegister(type="submit") Register

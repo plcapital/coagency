@@ -37,7 +37,7 @@ if ('development' == app.get('env')) {
 // TODO move this session configuration to a better home
 var conf = {
     db: {
-        db: 'agents',
+        db: 'agents', // TODO change to 'coagency'
         host: 'localhost'
     },
     secret: 'coagency'
@@ -66,11 +66,13 @@ app.get('/logout', login.logout);
 app.get('/posts', post.listPage(modelProvider));
 app.get('/createPost', post.createPage);
 app.get('/users', user.listPage(modelProvider));
+app.get('/createUser', user.createPage);
 
 app.post('/createAgency', agency.create(modelProvider));
 app.post('/createGroup', group.create(modelProvider));
 app.post('/login', login.loginAuthentication);
 app.post('/createPost', post.create(modelProvider));
+app.post('/createUser', user.create(modelProvider));
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
