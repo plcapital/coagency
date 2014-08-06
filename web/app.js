@@ -37,7 +37,7 @@ if ('development' == app.get('env')) {
 // TODO move this session configuration to a better home
 var conf = {
     db: {
-        db: 'agents', // TODO change to 'coagency'
+        db: 'coagency',
         host: 'localhost'
     },
     secret: 'coagency'

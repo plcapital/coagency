@@ -1,6 +1,6 @@
 {
-  "name": "agents-web",
-  "description": "Peter and Kohei's agents app",
+  "name": "coagency-app",
+  "description": "Peter and Kohei's coagency app",
   "version": "0.0.1",
   "private": true,
   "scripts": {

@@ -4,7 +4,7 @@ var post = require('./post');
 var user = require('./user');
 
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/agents');
+mongoose.connect('mongodb://localhost/coagency');
 
 // register models
 mongoose.model('agency', agency.agencySchema);
