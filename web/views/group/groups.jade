@@ -1,0 +1,9 @@
+extends ../layout
+block content
+    h1.
+        Group List
+    ul
+        each group, i in groups
+            li= group.name
+                | &nbsp;-&nbsp;
+                =group.description
