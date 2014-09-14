@@ -1,9 +1,19 @@
-extends layout
+extends layouts/basicLayout
 block content
-    h1= title
-    form#formCreateUser(name="createUser", method="post", action="/createUser")
-        | *Username:
-        input#inputUsername(name="username", type="text")
-        | *Email:
-        input#inputEmail(name="email", type="text")
+    h1.
+        Register
+    form#formCreateUser(action="/createUser", class="basic-form", method="post", name="createUser")
+        div#divUsername(class="basic-input")
+            label#labelUsername(for="username") Username
+            input#inputUsername(name="username", type="text")        
+        div#divPassword(class="basic-input")
+            label#labelPassword(for="password") Password
+            input#inputPassword(name="password", type="password")
+            label#labelPasswordConfirm(for="passwordConfirm") Confirm password
+            input#inputPasswordConfirm(name="passwordConfirm", type="password")
+        div#divEmail(class="basic-input")
+            label#labelEmail(for="email") Email
+            input#inputEmail(name="email", type="text")
+            label#labelEmailConfirm(for="emailConfirm") Confirm email
+            input#inputEmailConfirm(name="emailConfirm", type="text")
         button#buttonRegister(type="submit") Register
