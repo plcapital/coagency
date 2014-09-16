@@ -71,7 +71,7 @@ app.get('/createUser', user.createPage);
 
 app.post('/createAgency', agency.create(modelProvider));
 app.post('/createGroup', group.create(modelProvider));
-app.post('/login', login.loginAuthentication);
+app.post('/login', login.loginAuthentication(modelProvider));
 app.post('/createPost', post.create(modelProvider));
 app.post('/createUser', user.create(modelProvider));
 
