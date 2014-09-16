@@ -24,13 +24,15 @@ exports.create = function (modelProvider) {
 
         var groupName = req.body.groupName;
         var groupDescription = req.body.groupDescription;
+        var groupAdministrator = req.session.user._id;
 
         var GroupModel = modelProvider.getModelByName('group');
 
         // TODO insert administrator ObjectId (based on current user)
         var group = new GroupModel({
             name: groupName,
-            description: groupDescription
+            description: groupDescription,
+            administrator: groupAdministrator
         });
         
         group.save(function (err) {

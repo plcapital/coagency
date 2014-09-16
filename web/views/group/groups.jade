@@ -5,5 +5,7 @@ block content
     ul
         each group, i in groups
             li= group.name
-                | &nbsp;-&nbsp;
+                |&nbsp;-&nbsp;
                 =group.description
+                |&nbsp;-&nbsp;
+                =group.administrator
