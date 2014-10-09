@@ -4,7 +4,8 @@ block content
         Group List
     ul
         each group, i in groups
-            li= group.name
+            li 
+                a(href="/viewGroup?groupId=#{group._id}") #{group.name}
                 |&nbsp;-&nbsp;
                 =group.description
                 |&nbsp;-&nbsp;

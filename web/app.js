@@ -62,6 +62,7 @@ app.get('/', routes.indexPage);
 app.get('/createAgency', agency.createPage);
 app.get('/groups', group.listPage(modelProvider));
 app.get('/createGroup', group.createPage);
+app.get('/viewGroup', group.viewPage(modelProvider))
 app.get('/login', login.loginPage);
 app.get('/logout', login.logout);
 app.get('/posts', post.listPage(modelProvider));

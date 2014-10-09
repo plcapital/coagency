@@ -45,3 +45,24 @@ exports.create = function (modelProvider) {
         })
     }
 }
+
+exports.viewPage = function (modelProvider) {
+    return function (req, res) {
+        var GroupModel = modelProvider.getModelByName('group');
+
+        GroupModel.findOne({"_id": req.query.groupId}, function (err, group) {
+            if (err) {
+                res.send('find some post failed: ' + err);
+                return;
+            }
+
+            if (group == null) {
+                // TODO some sort of ?404? error
+                res.location('/groups');
+                res.redirect('/groups');
+            }
+
+            res.render('group/viewPage');
+        })
+    }
+}
