@@ -1,7 +1,12 @@
 extends ../layout
 block content
     h1.
-        Group - ...
+        Group - #{name}
+    h2.
+        #{description}
+    if isAdministrator
+        a(href="/TODO") Add user to group
+    h3.
+        Property listings:
     ul
-        li
-            Hello
+        li Hello

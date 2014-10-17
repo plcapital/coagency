@@ -62,7 +62,9 @@ exports.viewPage = function (modelProvider) {
                 res.redirect('/groups');
             }
 
-            res.render('group/viewPage');
+            var isAdministrator = req.session.user._id == group.administrator;
+
+            res.render('group/viewPage', { name: group.name, description: group.description, isAdministrator: isAdministrator });
         })
     }
 }
