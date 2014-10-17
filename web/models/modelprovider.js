@@ -11,6 +11,7 @@ mongoose.model('agency', agency.agencySchema);
 mongoose.model('group', group.groupSchema);
 mongoose.model('post', post.postSchema);
 mongoose.model('user', user.userSchema);
+mongoose.model('groupUser', user.groupUserSchema);
 
 modelProvider = function () {
 };

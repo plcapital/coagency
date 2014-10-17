@@ -8,4 +8,10 @@ var userSchema = new Schema({
     hash: String
 });
 
+var groupUserSchema = new Schema({
+	userId: String,
+	groupId: String
+})
+
 exports.userSchema = userSchema;
+exports.groupUserSchema = groupUserSchema;
