@@ -29,17 +29,23 @@ exports.addGroupUser = function (modelProvider) {
 
 exports.addGroupUserPage = function (modelProvider) {
     return function (req, res) {
+        if (!req.session.user || !req.query.groupId) {
+            res.location("/");
+            res.redirect("/");
+            return;
+        }
+
         var groupModel = modelProvider.getModelByName('group');
 
         groupModel.findById(req.query.groupId, function (err, group) {
             if (err) {
-                // TODO handle err
-                console.log(err);
-            } else {
-                res.render('group/addUser', {
-                    "group": group
-                });
+                res.send("Invalid group id!<br>" + err);
+                return;
             }
+
+            res.render('group/addUser', {
+                "group": group
+            });
         });
 
         ;  
@@ -48,7 +54,6 @@ exports.addGroupUserPage = function (modelProvider) {
 
 exports.createGroup = function (modelProvider) {
     return function (req, res) {
-
         var groupName = req.body.groupName;
         var groupDescription = req.body.groupDescription;
         var groupAdministrator = req.session.user._id;
@@ -86,6 +91,13 @@ exports.createGroup = function (modelProvider) {
 }
 
 exports.createGroupPage = function (req, res) {
+    if (!req.session.user) {
+        // TODO handle err
+        res.location("/");
+        res.redirect("/");
+        return;
+    }
+
     res.render('group/createGroup', { title: 'Add New Group' });
 }
 
@@ -108,6 +120,13 @@ exports.listAllGroupsPage = function (modelProvider) {
 
 exports.listGroupsPage = function (modelProvider) {
     return function (req, res) {
+        if (!req.session.user) {
+            // TODO handle err
+            res.location("/");
+            res.redirect("/");
+            return;
+        }
+
         var groupUserModel = modelProvider.getModelByName('groupUser');
 
         groupUserModel.find({ userId: req.session.user._id }, function (err, groupUsers) {
@@ -147,11 +166,17 @@ exports.listGroupsPage = function (modelProvider) {
 
 exports.viewGroupPage = function (modelProvider) {
     return function (req, res) {
+        if (!req.session.user || !req.query.groupId) {
+            res.location("/");
+            res.redirect("/");
+            return;
+        }
+
         var GroupModel = modelProvider.getModelByName('group');
 
         GroupModel.findById(req.query.groupId, function (err, group) {
             if (err) {
-                res.send('find some post failed: ' + err);
+                res.send("Invalid group id!<br>" + err);
                 return;
             }
 
