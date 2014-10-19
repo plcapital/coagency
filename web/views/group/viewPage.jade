@@ -6,7 +6,9 @@ block content
         #{group.description}
     if isAdministrator
         a(href="/addGroupUser?groupId=#{group._id}") Add user to group
+    a(href="/createPost?groupId=#{group._id}") Add new listing
     h3.
         Property listings:
     ul
-        li Hello
+        each listing, i in listings
+            li #{listing.title}<br>#{listing.description}

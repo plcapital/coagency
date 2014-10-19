@@ -159,11 +159,21 @@ exports.viewGroupPage = function (modelProvider) {
                 // TODO some sort of ?404? error
                 res.location('/groups');
                 res.redirect('/groups');
+            } else {
+                var ListingModel = modelProvider.getModelByName("post");
+
+                ListingModel.find({ groupId: req.query.groupId }, function (err, listings) {
+                    if (err) {
+                        // TODO handle error
+                        res.send('');
+                        return;
+                    } else {
+                        var isAdministrator = req.session.user._id == group.administrator;
+
+                        res.render('group/viewPage', { "group": group, "isAdministrator": isAdministrator, listings: listings });
+                    }                    
+                });
             }
-
-            var isAdministrator = req.session.user._id == group.administrator;
-
-            res.render('group/viewPage', { "group": group, "isAdministrator": isAdministrator });
         })
     }
 }

@@ -16,21 +16,28 @@ exports.listPostsPage = function (modelProvider) {
 }
 
 exports.createPostPage = function (req, res) {
-    res.render('createPost', { title: 'Add New Post' });
+    if (!req.session.user || !req.query.groupId) {
+        // TODO handle error
+        console.log("Not logged in, or not in a group");
+        res.location("/");
+        res.redirect("/");
+    } else {
+        res.render('createPost', { title: 'Add New Post', groupId: req.query.groupId });
+    }
 }
 
 exports.createPost = function (modelProvider) {
     return function (req, res) {
-
-        // Get our form values. These rely on the "name" attributes
         var postTitle = req.body.postTitle;
         var postDescription = req.body.postDescription;
+        var groupId = req.body.postGroupId;
 
         var PostModel = modelProvider.getModelByName('post');
 
         var post = new PostModel({
             title: postTitle,
-            description: postDescription
+            description: postDescription,
+            groupId: groupId
         });
 
         post.save(function (err) {
@@ -38,10 +45,8 @@ exports.createPost = function (modelProvider) {
                 // If it failed, return error
                 res.send("There was a problem adding the information to the database.");
             } else {
-                // If it worked, set the header so the address bar doesn't still say /adduser
-                res.location("posts")
-                // And forward to success page
-                res.redirect("posts")
+                res.location("viewGroup?groupId=" + groupId);
+                res.redirect("viewGroup?groupId=" + groupId);
             }
         })
     }
