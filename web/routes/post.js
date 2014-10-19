@@ -1,8 +1,4 @@
-/**
- * Functions related to property postings belong here.
- */
-
-exports.listPage = function (modelProvider) {
+exports.listPostsPage = function (modelProvider) {
     return function (req, res) {
         var postModel = modelProvider.getModelByName('post');
 
@@ -19,11 +15,11 @@ exports.listPage = function (modelProvider) {
     }
 }
 
-exports.createPage = function (req, res) {
+exports.createPostPage = function (req, res) {
     res.render('createPost', { title: 'Add New Post' });
 }
 
-exports.create = function (modelProvider) {
+exports.createPost = function (modelProvider) {
     return function (req, res) {
 
         // Get our form values. These rely on the "name" attributes
@@ -32,11 +28,11 @@ exports.create = function (modelProvider) {
 
         var PostModel = modelProvider.getModelByName('post');
 
-        // Submit to the DB
         var post = new PostModel({
             title: postTitle,
             description: postDescription
         });
+
         post.save(function (err) {
             if (err) {
                 // If it failed, return error
@@ -47,6 +43,21 @@ exports.create = function (modelProvider) {
                 // And forward to success page
                 res.redirect("posts")
             }
+        })
+    }
+}
+
+exports.viewPostPage = function (modelProvider, id) {
+    return function (req, res) {
+        var PostModel = modelProvider.getModelByName('post');
+
+        PostModel.findById(id, function (err, post) {
+            if (err) {
+                res.send('find some post failed: ' + err);
+                return;
+            }
+
+            // TODO ...
         })
     }
 }

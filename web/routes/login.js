@@ -9,7 +9,7 @@ exports.loginPage = function (req, res) {
     res.render('login');
 };
 
-exports.logout = function (req, res) {
+exports.logoutPage = function (req, res) {
     req.session.destroy();
 
     res.render('login', {
@@ -17,7 +17,7 @@ exports.logout = function (req, res) {
     });
 };
 
-exports.loginAuthentication = function (modelProvider) {
+exports.login = function (modelProvider) {
     return function (req, res) {
         authenticate(req.body.username, req.body.password, modelProvider, function (err, user) {
             if (user) {

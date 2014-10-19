@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-exports.createPage = function (req, res) {
+exports.createAgencyPage = function (req, res) {
     res.render('agency/createAgency', { title: 'Add New Agency' });
 }
 

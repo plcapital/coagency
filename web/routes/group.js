@@ -46,7 +46,7 @@ exports.addGroupUserPage = function (modelProvider) {
     }
 }
 
-exports.listAllPage = function (modelProvider) {
+exports.listAllGroupsPage = function (modelProvider) {
     return function (req, res) {
         var groupModel = modelProvider.getModelByName('group');
 
@@ -63,7 +63,7 @@ exports.listAllPage = function (modelProvider) {
     }
 }
 
-exports.listPage = function (modelProvider) {
+exports.listGroupsPage = function (modelProvider) {
     return function (req, res) {
         var groupUserModel = modelProvider.getModelByName('groupUser');
 
@@ -95,11 +95,11 @@ exports.listPage = function (modelProvider) {
     }
 }
 
-exports.createPage = function (req, res) {
+exports.createGroupPage = function (req, res) {
     res.render('group/createGroup', { title: 'Add New Group' });
 }
 
-exports.create = function (modelProvider) {
+exports.createGroup = function (modelProvider) {
     return function (req, res) {
 
         var groupName = req.body.groupName;
@@ -138,7 +138,7 @@ exports.create = function (modelProvider) {
     }
 }
 
-exports.viewPage = function (modelProvider) {
+exports.viewGroupPage = function (modelProvider) {
     return function (req, res) {
         var GroupModel = modelProvider.getModelByName('group');
 

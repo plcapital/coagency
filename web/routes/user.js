@@ -1,6 +1,6 @@
 var bcrypt = require('bcrypt');
 
-exports.listPage = function (modelProvider) {
+exports.listUsersPage = function (modelProvider) {
     return function (req, res) {
         var userModel = modelProvider.getModelByName('user');
 
@@ -17,11 +17,11 @@ exports.listPage = function (modelProvider) {
     }
 }
 
-exports.createPage = function (req, res) {
+exports.createUserPage = function (req, res) {
     res.render('createUser');
 }
 
-exports.create = function (modelProvider) {
+exports.createUser = function (modelProvider) {
     return function (req, res) {
 
         // Get our form values. These rely on the "name" attributes

@@ -6,13 +6,10 @@ var express = require('express');
 var http = require('http');
 var MongoStore = require('connect-mongo')(express);
 
-var routes = require('./routes');
-var agency = require('./routes/agency');
-var group = require('./routes/group');
-var login = require('./routes/login');
-var post = require('./routes/post');
-var user = require('./routes/user');
 var path = require('path');
+
+var gets = require('./get');
+var posts = require('./post');
 
 var app = express();
 
@@ -58,26 +55,8 @@ app.configure(function () {
 var ModelProvider = require('./models/modelprovider').modelProvider;
 var modelProvider = new ModelProvider();
 
-app.get('/', routes.indexPage);
-app.get('/createAgency', agency.createPage);
-app.get('/groups', group.listPage(modelProvider));
-app.get('/allGroups', group.listAllPage(modelProvider));
-app.get('/addGroupUser', group.addGroupUserPage(modelProvider));
-app.get('/createGroup', group.createPage);
-app.get('/viewGroup', group.viewPage(modelProvider))
-app.get('/login', login.loginPage);
-app.get('/logout', login.logout);
-app.get('/posts', post.listPage(modelProvider));
-app.get('/createPost', post.createPage);
-app.get('/users', user.listPage(modelProvider));
-app.get('/createUser', user.createPage);
-
-app.post('/createAgency', agency.create(modelProvider));
-app.post('/addGroupUser', group.addGroupUser(modelProvider));
-app.post('/createGroup', group.create(modelProvider));
-app.post('/login', login.loginAuthentication(modelProvider));
-app.post('/createPost', post.create(modelProvider));
-app.post('/createUser', user.create(modelProvider));
+gets.setup(app, modelProvider);
+posts.setup(app, modelProvider);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
