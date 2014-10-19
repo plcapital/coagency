@@ -4,13 +4,15 @@ block content
   h1= title
   if user
     p Hello #{user.username}, welcome to #{title}
+    p
+      a(href="/logout") logout<br>
+      a(href="/listGroups") current groups<br>
+      a(href="/listPosts") current posts<br>
+      a(href="/listUsers") current users<br>
+      a(href="/createPost") create new post<br>
+      a(href="/createGroup") create new group<br>
   else
     p Welcome to #{title}
-  p
-    a(href="/login") login<br>
-    a(href="/listUsers") current users<br>
-    a(href="/listGroups") current groups<br>
-    a(href="/createGroup") create new group<br>
-    a(href="/listPosts") current posts<br>
-    a(href="/createPost") create new post<br>
-    a(href="/logout") logout
+    p
+      a(href="/login") login<br>
+      a(href="/createUser") Register<br>
