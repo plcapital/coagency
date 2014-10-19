@@ -1,0 +1,11 @@
+extends ../layouts/basicLayout
+block content
+    h1.
+        Add user to #{group.name}
+
+    form#formAddUser(action="/addGroupUser", class="basic-form", method="post", name="login")
+        div#divUsername(class="basic-input")
+            label#labelUsername(for="username") Username
+            input#inputUsername(type="text", name="username")
+            input#inputGroupId(type="text", name="groupId", value="#{group._id}")
+        button#buttonLogin(type="submit") Add

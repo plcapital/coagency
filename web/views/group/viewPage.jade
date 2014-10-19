@@ -1,11 +1,11 @@
 extends ../layout
 block content
     h1.
-        Group - #{name}
+        Group - #{group.name}
     h2.
-        #{description}
+        #{group.description}
     if isAdministrator
-        a(href="/TODO") Add user to group
+        a(href="/addGroupUser?groupId=#{group._id}") Add user to group
     h3.
         Property listings:
     ul

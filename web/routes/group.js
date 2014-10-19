@@ -1,3 +1,51 @@
+exports.addGroupUser = function (modelProvider) {
+    return function (req, res) {
+        var UserModel = modelProvider.getModelByName('user');
+
+        UserModel.findOne({ "username": req.body.username }, function (err, user) {
+            if (err) {
+                // TODO handle err
+                console.log(err);
+            } else {
+                var GroupUserModel = modelProvider.getModelByName('groupUser');
+
+                var groupUser = new GroupUserModel({
+                    userId: user._id,
+                    groupId: req.body.groupId
+                });
+
+                groupUser.save(function (err) {
+                    if (err) {
+                        res.send("There was a problem adding the information to the database.");
+                    } else {
+                        res.location("/groups")
+                        res.redirect("/groups")
+                    }
+                });
+            }
+        });
+    }
+}
+
+exports.addGroupUserPage = function (modelProvider) {
+    return function (req, res) {
+        var groupModel = modelProvider.getModelByName('group');
+
+        groupModel.findById(req.query.groupId, function (err, group) {
+            if (err) {
+                // TODO handle err
+                console.log(err);
+            } else {
+                res.render('group/addUser', {
+                    "group": group
+                });
+            }
+        });
+
+        ;  
+    }
+}
+
 exports.listAllPage = function (modelProvider) {
     return function (req, res) {
         var groupModel = modelProvider.getModelByName('group');
@@ -20,26 +68,29 @@ exports.listPage = function (modelProvider) {
         var groupUserModel = modelProvider.getModelByName('groupUser');
 
         groupUserModel.find({ userId: req.session.user._id }, function (err, groupUsers) {
-            var groupModel = modelProvider.getModelByName('group');
+            if (err) {
+                // TODO handle err
+                console.log(err);
+            } else {
+                var groupModel = modelProvider.getModelByName('group');
 
-            var groupIds = [];
-            var numberOfGroupUsers = groupUsers.length;
-            for (var i = 0; i < numberOfGroupUsers; i++) {
-                groupIds.push(groupUsers[i].groupId)
-            }
-
-            console.log(groupIds);
-
-            groupModel.find({ _id: { $in: [ groupIds ] } }, function (err, groups) {
-                if (err) {
-                    // TODO handle err
-                    console.log(err);
-                } else {
-                    res.render('group/groups', {
-                        "groups": groups
-                    });
+                var groupIds = [];
+                var numberOfGroupUsers = groupUsers.length;
+                for (var i = 0; i < numberOfGroupUsers; i++) {
+                    groupIds.push(groupUsers[i].groupId)
                 }
-            });
+
+                groupModel.find({ _id: { $in: [ groupIds ] } }, function (err, groups) {
+                    if (err) {
+                        // TODO handle err
+                        console.log(err);
+                    } else {
+                        res.render('group/groups', {
+                            "groups": groups
+                        });
+                    }
+                });
+            }
         });
     }
 }
@@ -105,7 +156,7 @@ exports.viewPage = function (modelProvider) {
 
             var isAdministrator = req.session.user._id == group.administrator;
 
-            res.render('group/viewPage', { name: group.name, description: group.description, isAdministrator: isAdministrator });
+            res.render('group/viewPage', { "group": group, "isAdministrator": isAdministrator });
         })
     }
 }

@@ -62,6 +62,7 @@ app.get('/', routes.indexPage);
 app.get('/createAgency', agency.createPage);
 app.get('/groups', group.listPage(modelProvider));
 app.get('/allGroups', group.listAllPage(modelProvider));
+app.get('/addGroupUser', group.addGroupUserPage(modelProvider));
 app.get('/createGroup', group.createPage);
 app.get('/viewGroup', group.viewPage(modelProvider))
 app.get('/login', login.loginPage);
@@ -72,6 +73,7 @@ app.get('/users', user.listPage(modelProvider));
 app.get('/createUser', user.createPage);
 
 app.post('/createAgency', agency.create(modelProvider));
+app.post('/addGroupUser', group.addGroupUser(modelProvider));
 app.post('/createGroup', group.create(modelProvider));
 app.post('/login', login.loginAuthentication(modelProvider));
 app.post('/createPost', post.create(modelProvider));
