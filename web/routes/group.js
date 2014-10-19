@@ -72,10 +72,17 @@ exports.listGroupsPage = function (modelProvider) {
                 // TODO handle err
                 console.log(err);
             } else {
+                var numberOfGroupUsers = groupUsers.length;
+                // If this user doesn't belong to any groups
+                if (numberOfGroupUsers == 0) {
+                    // TODO add information message for user
+                    res.location("/")
+                    res.redirect("/")
+                }
+
                 var groupModel = modelProvider.getModelByName('group');
 
                 var groupIds = [];
-                var numberOfGroupUsers = groupUsers.length;
                 for (var i = 0; i < numberOfGroupUsers; i++) {
                     groupIds.push(groupUsers[i].groupId)
                 }

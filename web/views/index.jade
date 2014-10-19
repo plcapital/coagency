@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  if loggedInUser
-    p Hello #{loggedInUser.name}, welcome to #{title}
+  if user
+    p Hello #{user.username}, welcome to #{title}
   else
     p Welcome to #{title}
   p
