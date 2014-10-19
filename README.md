@@ -1,5 +1,9 @@
 Project organisation:
 
+General:
+Keep functions in alphabetical order within each file.
+Interal functions come after all exteral (exports) function definitions.
+
 Routes:
 The application routes are grouped by GET and POST methods.
 

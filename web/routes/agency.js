@@ -1,12 +1,3 @@
-var mongoose = require("mongoose");
-
-var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId;
-
-exports.createAgencyPage = function (req, res) {
-    res.render('agency/createAgency', { title: 'Add New Agency' });
-}
-
 exports.create = function (modelProvider) {
     return function (req, res) {
 
@@ -45,4 +36,8 @@ exports.create = function (modelProvider) {
             })
         })
     }
+}
+
+exports.createAgencyPage = function (req, res) {
+    res.render('agency/createAgency', { title: 'Add New Agency' });
 }

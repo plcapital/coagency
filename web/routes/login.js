@@ -1,22 +1,5 @@
 var bcrypt = require('bcrypt');
 
-/**
- * Bytesize.
- */
-var len = 128;
-
-exports.loginPage = function (req, res) {
-    res.render('login');
-};
-
-exports.logoutPage = function (req, res) {
-    req.session.destroy();
-
-    res.render('login', {
-        "infoMsg": "You are now logged out."
-    });
-};
-
 exports.login = function (modelProvider) {
     return function (req, res) {
         authenticate(req.body.username, req.body.password, modelProvider, function (err, user) {
@@ -37,6 +20,18 @@ exports.login = function (modelProvider) {
             }
         });
     }
+};
+
+exports.loginPage = function (req, res) {
+    res.render('login');
+};
+
+exports.logoutPage = function (req, res) {
+    req.session.destroy();
+
+    res.render('login', {
+        "infoMsg": "You are now logged out."
+    });
 };
 
 function authenticate(name, pass, modelProvider, fn) {

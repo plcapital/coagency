@@ -1,22 +1,5 @@
 var bcrypt = require('bcrypt');
 
-exports.listUsersPage = function (modelProvider) {
-    return function (req, res) {
-        var userModel = modelProvider.getModelByName('user');
-
-        userModel.find(function (err, users) {
-            if (err) {
-                // TODO handle err
-                console.log(err);
-            } else {
-                res.render('users', {
-                    "users": users
-                });
-            }
-        });
-    }
-}
-
 exports.createUserPage = function (req, res) {
     res.render('createUser');
 }
@@ -52,6 +35,23 @@ exports.createUser = function (modelProvider) {
                     }
                 })
             });
+        });
+    }
+}
+
+exports.listUsersPage = function (modelProvider) {
+    return function (req, res) {
+        var userModel = modelProvider.getModelByName('user');
+
+        userModel.find(function (err, users) {
+            if (err) {
+                // TODO handle err
+                console.log(err);
+            } else {
+                res.render('users', {
+                    "users": users
+                });
+            }
         });
     }
 }

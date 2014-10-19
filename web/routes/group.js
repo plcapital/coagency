@@ -46,6 +46,49 @@ exports.addGroupUserPage = function (modelProvider) {
     }
 }
 
+exports.createGroup = function (modelProvider) {
+    return function (req, res) {
+
+        var groupName = req.body.groupName;
+        var groupDescription = req.body.groupDescription;
+        var groupAdministrator = req.session.user._id;
+
+        var GroupModel = modelProvider.getModelByName('group');
+
+        var group = new GroupModel({
+            name: groupName,
+            description: groupDescription,
+            administrator: groupAdministrator
+        });
+
+        group.save(function (err) {
+            if (err) {
+                res.send("There was a problem adding the information to the database.");
+            } else {
+                var GroupUserModel = modelProvider.getModelByName('groupUser');
+
+                var groupUser = new GroupUserModel({
+                    userId: groupAdministrator,
+                    groupId: group._id
+                });
+
+                groupUser.save(function (err) {
+                    if (err) {
+                        res.send("There was a problem adding the information to the database.");
+                    } else {
+                        res.location("/groups")
+                        res.redirect("/groups")
+                    }
+                });
+            }
+        })
+    }
+}
+
+exports.createGroupPage = function (req, res) {
+    res.render('group/createGroup', { title: 'Add New Group' });
+}
+
 exports.listAllGroupsPage = function (modelProvider) {
     return function (req, res) {
         var groupModel = modelProvider.getModelByName('group');
@@ -99,49 +142,6 @@ exports.listGroupsPage = function (modelProvider) {
                 });
             }
         });
-    }
-}
-
-exports.createGroupPage = function (req, res) {
-    res.render('group/createGroup', { title: 'Add New Group' });
-}
-
-exports.createGroup = function (modelProvider) {
-    return function (req, res) {
-
-        var groupName = req.body.groupName;
-        var groupDescription = req.body.groupDescription;
-        var groupAdministrator = req.session.user._id;
-
-        var GroupModel = modelProvider.getModelByName('group');
-
-        var group = new GroupModel({
-            name: groupName,
-            description: groupDescription,
-            administrator: groupAdministrator
-        });
-
-        group.save(function (err) {
-            if (err) {
-                res.send("There was a problem adding the information to the database.");
-            } else {
-                var GroupUserModel = modelProvider.getModelByName('groupUser');
-
-                var groupUser = new GroupUserModel({
-                    userId: groupAdministrator,
-                    groupId: group._id
-                });
-
-                groupUser.save(function (err) {
-                    if (err) {
-                        res.send("There was a problem adding the information to the database.");
-                    } else {
-                        res.location("/groups")
-                        res.redirect("/groups")
-                    }
-                });
-            }
-        })
     }
 }
 
