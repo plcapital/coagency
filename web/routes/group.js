@@ -145,14 +145,14 @@ exports.listGroupsPage = function (modelProvider) {
                     return;
                 }
 
-                var groupModel = modelProvider.getModelByName('group');
-
                 var groupIds = [];
                 for (var i = 0; i < numberOfGroupUsers; i++) {
                     groupIds.push(groupUsers[i].groupId)
                 }
 
-                groupModel.find({ _id: { $in: [ groupIds ] } }, function (err, groups) {
+                var groupModel = modelProvider.getModelByName('group');
+
+                groupModel.find({ _id: { $in: groupIds } }, function (err, groups) {
                     if (err) {
                         // TODO handle err
                         console.log(err);
