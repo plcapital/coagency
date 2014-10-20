@@ -15,10 +15,10 @@ exports.createPost = function (modelProvider) {
         post.save(function (err) {
             if (err) {
                 // If it failed, return error
-                res.send("There was a problem adding the information to the database.");
+                res.send('There was a problem adding the information to the database.');
             } else {
-                res.location("viewGroup?groupId=" + groupId);
-                res.redirect("viewGroup?groupId=" + groupId);
+                res.location('viewGroup?groupId=' + groupId);
+                res.redirect('viewGroup?groupId=' + groupId);
             }
         })
     }
@@ -27,11 +27,13 @@ exports.createPost = function (modelProvider) {
 exports.createPostPage = function (req, res) {
     if (!req.session.user || !req.query.groupId) {
         // TODO handle error
-        console.log("Not logged in, or not in a group");
-        res.location("/");
-        res.redirect("/");
+        console.log('Not logged in, or not in a group');
+        res.location('/');
+        res.redirect('/');
     } else {
-        res.render('createPost', { title: 'Add New Post', groupId: req.query.groupId });
+        res.render('listing/createPost', {
+            title: 'Add New Post', groupId: req.query.groupId
+        });
     }
 }
 
@@ -44,8 +46,8 @@ exports.listPostsPage = function (modelProvider) {
                 // TODO handle err
                 console.log(err);
             } else {
-                res.render('posts', {
-                    "postlist": posts
+                res.render('listing/listPosts', {
+                    posts: posts
                 });
             }
         });

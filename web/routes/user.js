@@ -1,7 +1,7 @@
 var bcrypt = require('bcrypt');
 
 exports.createUserPage = function (req, res) {
-    res.render('createUser');
+    res.render('user/createUser');
 }
 
 exports.createUser = function (modelProvider) {
@@ -26,12 +26,10 @@ exports.createUser = function (modelProvider) {
                 user.save(function (err) {
                     if (err) {
                         // If it failed, return error
-                        res.send("There was a problem adding the information to the database.");
+                        res.send('There was a problem adding the information to the database.');
                     } else {
-                        // If it worked, set the header so the address bar doesn't still say /adduser
-                        res.location("users")
-                        // And forward to success page
-                        res.redirect("users")
+                        res.location('/listUsers');
+                        res.redirect('/listUsers');
                     }
                 })
             });
@@ -48,8 +46,8 @@ exports.listUsersPage = function (modelProvider) {
                 // TODO handle err
                 console.log(err);
             } else {
-                res.render('users', {
-                    "users": users
+                res.render('user/listUsers', {
+                    users: users
                 });
             }
         });

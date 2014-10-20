@@ -2,7 +2,7 @@ exports.addGroupUser = function (modelProvider) {
     return function (req, res) {
         var UserModel = modelProvider.getModelByName('user');
 
-        UserModel.findOne({ "username": req.body.username }, function (err, user) {
+        UserModel.findOne({ username: req.body.username }, function (err, user) {
             if (err) {
                 // TODO handle err
                 console.log(err);
@@ -16,10 +16,10 @@ exports.addGroupUser = function (modelProvider) {
 
                 groupUser.save(function (err) {
                     if (err) {
-                        res.send("There was a problem adding the information to the database.");
+                        res.send('There was a problem adding the information to the database.');
                     } else {
-                        res.location("/groups")
-                        res.redirect("/groups")
+                        res.location('/listGroups');
+                        res.redirect('/listGroups');
                     }
                 });
             }
@@ -30,8 +30,8 @@ exports.addGroupUser = function (modelProvider) {
 exports.addGroupUserPage = function (modelProvider) {
     return function (req, res) {
         if (!req.session.user || !req.query.groupId) {
-            res.location("/");
-            res.redirect("/");
+            res.location('/');
+            res.redirect('/');
             return;
         }
 
@@ -39,12 +39,12 @@ exports.addGroupUserPage = function (modelProvider) {
 
         groupModel.findById(req.query.groupId, function (err, group) {
             if (err) {
-                res.send("Invalid group id!<br>" + err);
+                res.send('Invalid group id!<br>' + err);
                 return;
             }
 
             res.render('group/addUser', {
-                "group": group
+                group: group
             });
         });
 
@@ -68,7 +68,7 @@ exports.createGroup = function (modelProvider) {
 
         group.save(function (err) {
             if (err) {
-                res.send("There was a problem adding the information to the database.");
+                res.send('There was a problem adding the information to the database.');
             } else {
                 var GroupUserModel = modelProvider.getModelByName('groupUser');
 
@@ -79,10 +79,10 @@ exports.createGroup = function (modelProvider) {
 
                 groupUser.save(function (err) {
                     if (err) {
-                        res.send("There was a problem adding the information to the database.");
+                        res.send('There was a problem adding the information to the database.');
                     } else {
-                        res.location("/groups")
-                        res.redirect("/groups")
+                        res.location('/listGroups');
+                        res.redirect('/listGroups');
                     }
                 });
             }
@@ -93,12 +93,14 @@ exports.createGroup = function (modelProvider) {
 exports.createGroupPage = function (req, res) {
     if (!req.session.user) {
         // TODO handle err
-        res.location("/");
-        res.redirect("/");
+        res.location('/');
+        res.redirect('/');
         return;
     }
 
-    res.render('group/createGroup', { title: 'Add New Group' });
+    res.render('group/createGroup', {
+        title: 'Add New Group'
+    });
 }
 
 exports.listAllGroupsPage = function (modelProvider) {
@@ -110,8 +112,8 @@ exports.listAllGroupsPage = function (modelProvider) {
                 // TODO handle err
                 console.log(err);
             } else {
-                res.render('group/groups', {
-                    "groups": groups
+                res.render('group/listGroups', {
+                    groups: groups
                 });
             }
         });
@@ -122,8 +124,8 @@ exports.listGroupsPage = function (modelProvider) {
     return function (req, res) {
         if (!req.session.user) {
             // TODO handle err
-            res.location("/");
-            res.redirect("/");
+            res.location('/');
+            res.redirect('/');
             return;
         }
 
@@ -138,8 +140,9 @@ exports.listGroupsPage = function (modelProvider) {
                 // If this user doesn't belong to any groups
                 if (numberOfGroupUsers == 0) {
                     // TODO add information message for user
-                    res.location("/")
-                    res.redirect("/")
+                    res.location('/');
+                    res.redirect('/');
+                    return;
                 }
 
                 var groupModel = modelProvider.getModelByName('group');
@@ -154,8 +157,8 @@ exports.listGroupsPage = function (modelProvider) {
                         // TODO handle err
                         console.log(err);
                     } else {
-                        res.render('group/groups', {
-                            "groups": groups
+                        res.render('group/listGroups', {
+                            groups: groups
                         });
                     }
                 });
@@ -167,8 +170,8 @@ exports.listGroupsPage = function (modelProvider) {
 exports.viewGroupPage = function (modelProvider) {
     return function (req, res) {
         if (!req.session.user || !req.query.groupId) {
-            res.location("/");
-            res.redirect("/");
+            res.location('/');
+            res.redirect('/');
             return;
         }
 
@@ -176,16 +179,16 @@ exports.viewGroupPage = function (modelProvider) {
 
         GroupModel.findById(req.query.groupId, function (err, group) {
             if (err) {
-                res.send("Invalid group id!<br>" + err);
+                res.send('Invalid group id!<br>' + err);
                 return;
             }
 
             if (group == null) {
                 // TODO some sort of ?404? error
-                res.location('/groups');
-                res.redirect('/groups');
+                res.location('/listGroups');
+                res.redirect('/listGroups');
             } else {
-                var ListingModel = modelProvider.getModelByName("post");
+                var ListingModel = modelProvider.getModelByName('post');
 
                 ListingModel.find({ groupId: req.query.groupId }, function (err, listings) {
                     if (err) {
@@ -195,7 +198,9 @@ exports.viewGroupPage = function (modelProvider) {
                     } else {
                         var isAdministrator = req.session.user._id == group.administrator;
 
-                        res.render('group/viewPage', { "group": group, "isAdministrator": isAdministrator, listings: listings });
+                        res.render('group/viewGroup', {
+                            group: group, isAdministrator: isAdministrator, listings: listings
+                        });
                     }                    
                 });
             }

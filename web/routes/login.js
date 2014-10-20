@@ -10,12 +10,12 @@ exports.login = function (modelProvider) {
                     // object
                     req.session.user = user;
 
-                    res.location("/")
-                    res.redirect("/")
+                    res.location('/');
+                    res.redirect('/');
                 });
             } else {
-                res.render('login', {
-                    "errorMsg": "Authentication faile because of - " + err
+                res.render('login/login', {
+                    errorMsg: 'Authentication failed because of: ' + err
                 });
             }
         });
@@ -23,14 +23,14 @@ exports.login = function (modelProvider) {
 };
 
 exports.loginPage = function (req, res) {
-    res.render('login');
+    res.render('login/login');
 };
 
 exports.logoutPage = function (req, res) {
     req.session.destroy();
 
-    res.render('login', {
-        "infoMsg": "You are now logged out."
+    res.render('login/login', {
+        infoMsg: 'You are now logged out.'
     });
 };
 
@@ -41,7 +41,7 @@ function authenticate(name, pass, modelProvider, fn) {
 
     var UserModel = modelProvider.getModelByName('user');
 
-    UserModel.findOne({"username": name}, function (err, user) {
+    UserModel.findOne({username: name}, function (err, user) {
         if (err) {
             // TODO handle err
             console.log(err);
