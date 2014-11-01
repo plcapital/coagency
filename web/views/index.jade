@@ -13,5 +13,14 @@ block content
   else
     p Welcome to #{title}
     p
-      a(href="/login") login<br>
+      // This login form is duplicated from login.jade, see if there is a way to share code...
+      form#formLogin(action="/login", class="basic-form", method="post", name="login")
+        div#divUsername(class="basic-input")
+            label#labelUsername(for="username") Username
+            input#inputUsername(type="text", name="username")
+        div#divPassword(class="basic-input")
+            label#labelPassword(for="password") Password
+            input#inputPassword(type="password", name="password")
+        button#buttonLogin(type="submit") Login
+      | Not yet a user?&nbsp;
       a(href="/createUser") Register<br>
