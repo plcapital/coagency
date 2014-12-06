@@ -9,19 +9,27 @@ exports.addGroupUser = function (modelProvider) {
             } else {
                 var GroupUserModel = modelProvider.getModelByName('groupUser');
 
-                var groupUser = new GroupUserModel({
-                    userId: user._id,
-                    groupId: req.body.groupId
-                });
-
-                groupUser.save(function (err) {
-                    if (err) {
-                        res.send('There was a problem adding the information to the database.');
-                    } else {
-                        res.location('/listGroups');
-                        res.redirect('/listGroups');
+                GroupUserModel.findOne({ userId: user._id, groupId: req.body.groupId }, function (err, existingGroupUser) {
+                    if (existingGroupUser != null) {
+                        res.send('User is already in this group.');
+                        return;
                     }
-                });
+
+                    var groupUser = new GroupUserModel({
+                        userId: user._id,
+                        groupId: req.body.groupId
+                    });
+
+                    groupUser.save(function (err) {
+                        if (err) {
+                            res.send('There was a problem adding the information to the database.');
+                        } else {
+                            res.location('/listGroups');
+                            res.redirect('/listGroups');
+                        }
+                    });
+                })
+
             }
         });
     }
@@ -43,7 +51,7 @@ exports.addGroupUserPage = function (modelProvider) {
                 return;
             }
 
-            res.render('group/addUser', {
+            res.render('group/addGroupUser', {
                 group: group
             });
         });
