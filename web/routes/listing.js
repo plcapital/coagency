@@ -2,16 +2,51 @@ var common = require('../utils/common');
 
 exports.createListing = function (modelProvider) {
     return function (req, res) {
-        var listingTitle = req.body.listingTitle;
-        var listingDescription = req.body.listingDescription;
-        var listingGroupId = req.body.listingGroupId;
+        req.checkBody('description', 'description is required').notEmpty();
+        req.checkBody('location', 'location is required').notEmpty();
+        req.checkBody('type', 'type is required').notEmpty();
+        req.checkBody('category', 'category is required').notEmpty();
+        req.checkBody('area', 'area is required').notEmpty();
+        req.checkBody('price', 'price is required').notEmpty();
+
+        var errors = req.validationErrors(); 
+        if (errors) {
+            res.render('listing/createListing', {
+                title: 'Add New Listing', errors: errors, groupId: req.body.groupId
+            });
+            return;
+        }
+
+        var listingUserId = req.session.user._id;
+        var listingGroupId = req.body.groupId;
+        var listingDescription = req.body.description;
+        var listingLocation = req.body.location;
+        var listingType = req.body.type;
+        var listingCategory = req.body.category;
+        var listingProperty = req.body.property;
+        var listingArea = req.body.area;
+        var listingMeasure = req.body.measure;
+        var listingPrice = req.body.price;
+        var listingBedrooms = req.body.bedrooms;
+        var listingBathrooms = req.body.bathrooms;
+        var listingTenure = req.body.tenure;
 
         var ListingModel = modelProvider.getModelByName('listing');
 
         var Listing = new ListingModel({
-            title: listingTitle,
+            userId: listingUserId,
+            groupId: listingGroupId,
             description: listingDescription,
-            groupId: listingGroupId
+            location: listingLocation,
+            type: listingType,
+            category: listingCategory,
+            property: listingProperty,
+            area: listingArea,
+            measure: listingMeasure,
+            price: listingPrice,
+            bedrooms: listingBedrooms,
+            bathrooms: listingBathrooms,
+            tenure: listingTenure
         });
 
         Listing.save(function (err) {

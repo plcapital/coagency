@@ -5,6 +5,7 @@
 var express = require('express');
 var http = require('http');
 var MongoStore = require('connect-mongo')(express);
+var expressValidator = require('express-validator');
 
 var path = require('path');
 
@@ -47,6 +48,8 @@ app.configure(function () {
         maxAge: new Date(Date.now() + 3600000),
         store: new MongoStore(conf.db)
     }));
+    app.use(express.bodyParser());
+    app.use(expressValidator());
     // important that this comes after session management
     // TODO why?
     app.use(app.router);
