@@ -2,16 +2,13 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+exports.UserSchema = new Schema({
     username: String,
     email: String,
     hash: String
 });
 
-var groupUserSchema = new Schema({
+exports.GroupUserSchema = new Schema({
 	userId: String,
 	groupId: String
 })
-
-exports.userSchema = userSchema;
-exports.groupUserSchema = groupUserSchema;

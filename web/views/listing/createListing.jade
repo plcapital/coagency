@@ -1,7 +1,7 @@
 extends ../layouts/basicLayout
 block content
     h1= title
-    form#formCreatePost(name="createPost", method="post", action="/createPost")
+    form#formCreateListing(name="createListing", method="post", action="/createListing")
         | *Listing (hidden):
         select#inputListing(name="listing")
             option(value="general") General
@@ -76,7 +76,7 @@ block content
             option(value="intermediate") Intermediate
         | <br>
         | <br>
-        input#inputTitle(type="text", placeholder="title", name="postTitle")
-        input#inputDescription(type="text", placeholder="description", name="postDescription")
-        input#inputGroupId(name="postGroupId", type="text", value="#{groupId}")
+        input#inputTitle(type="text", placeholder="title", name="listingTitle")
+        input#inputDescription(type="text", placeholder="description", name="listingDescription")
+        input#inputGroupId(name="listingGroupId", type="text", value="#{groupId}")
         button#buttonSubmit(type="submit") submit

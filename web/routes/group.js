@@ -114,9 +114,9 @@ exports.listAllGroupsPage = function (modelProvider) {
             return;
         }
 
-        var groupModel = modelProvider.getModelByName('group');
+        var GroupModel = modelProvider.getModelByName('group');
 
-        groupModel.find(function (err, groups) {
+        GroupModel.find(function (err, groups) {
             if (err) {
                 // TODO handle err
                 console.log(err);
@@ -192,7 +192,7 @@ exports.viewGroupPage = function (modelProvider) {
                 res.location('/listGroups');
                 res.redirect('/listGroups');
             } else {
-                var ListingModel = modelProvider.getModelByName('post');
+                var ListingModel = modelProvider.getModelByName('listing');
 
                 ListingModel.find({ groupId: req.query.groupId }, function (err, listings) {
                     if (err) {

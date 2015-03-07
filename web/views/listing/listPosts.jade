@@ -1,9 +1,0 @@
-extends ../layouts/basicLayout
-block content
-    h1.
-        Postings
-    ul
-        each post, i in posts
-            li= post.title
-                | &nbsp;-&nbsp;
-                =post.description

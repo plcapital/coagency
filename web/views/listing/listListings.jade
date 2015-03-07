@@ -1,0 +1,9 @@
+extends ../layouts/basicLayout
+block content
+    h1.
+        Listings
+    ul
+        each listing, i in listings
+            li= listing.title
+                | &nbsp;-&nbsp;
+                =listing.description
