@@ -3,16 +3,23 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/basicStyle.css')
-  body
-    header
-      nav
-        ul
-          li
-            a(href="/") Home
-          li
-            a(href="/login") Login
-          li
-            a(href="/createUser") Register
-          li
-            a(href="/logout") Logout
+    script(src='/javascripts/yui3/yui/yui-min.js')
+  body(class='yui3-skin-sam')
+    div(id='navigationbar', class='yui3-menu yui3-menu-horizontal')
+      div(class='yui3-menu-content')
+        ul(class='first-of-type')
+          li(class='yui3-menuitem')
+            a(class='yui3-menuitem-content', href="/") Home
+          li(class='yui3-menuitem')
+            a(class='yui3-menuitem-content', href="/login") Login
+          li(class='yui3-menuitem')
+            a(class='yui3-menuitem-content', href="/createUser") Register
+          li(class='yui3-menuitem')
+            a(class='yui3-menuitem-content', href="/logout") Logout
     block content
+    script
+      | YUI().use('node-menunav', function(Y) {
+      |   var menu = Y.one("#navigationbar");
+      |   menu.plug(Y.Plugin.NodeMenuNav);
+      |   menu.get("ownerDocument").get("documentElement").removeClass("yui3-loading");
+      | });

@@ -21,3 +21,6 @@ The routes are ordered in alphabetical order, where the following rules apply:
 
 1. Order first by domain (e.g. 'group' before 'user')
 2. Order then by path (which should match the route function)
+
+## Dependencies: ##
+For layout and design, there is a dependency to yui3 (https://github.com/yui/yui3). This needs to be downloaded/cloned, and the 'build' directory needs to be placed into public/javascripts/ and renamed to 'yui3'.
