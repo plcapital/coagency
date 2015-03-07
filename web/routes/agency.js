@@ -1,3 +1,5 @@
+var common = require('../utils/common');
+
 exports.create = function (modelProvider) {
     return function (req, res) {
         var agencyName = req.body.agencyName;
@@ -32,10 +34,7 @@ exports.create = function (modelProvider) {
 }
 
 exports.createAgencyPage = function (req, res) {
-    if (!req.session.user) {
-        // TODO error handling
-        res.location('/');
-        res.redirect('/');
+    if (common.redirectToIndexIfNotLoggedIn(req, res)) {
         return;
     }
     

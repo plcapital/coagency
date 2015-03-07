@@ -1,3 +1,5 @@
+var common = require('../utils/common');
+
 exports.addGroupUser = function (modelProvider) {
     return function (req, res) {
         var UserModel = modelProvider.getModelByName('user');
@@ -37,9 +39,7 @@ exports.addGroupUser = function (modelProvider) {
 
 exports.addGroupUserPage = function (modelProvider) {
     return function (req, res) {
-        if (!req.session.user || !req.query.groupId) {
-            res.location('/');
-            res.redirect('/');
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
             return;
         }
 
@@ -99,10 +99,7 @@ exports.createGroup = function (modelProvider) {
 }
 
 exports.createGroupPage = function (req, res) {
-    if (!req.session.user) {
-        // TODO handle err
-        res.location('/');
-        res.redirect('/');
+    if (common.redirectToIndexIfNotLoggedIn(req, res)) {
         return;
     }
 
@@ -113,6 +110,10 @@ exports.createGroupPage = function (req, res) {
 
 exports.listAllGroupsPage = function (modelProvider) {
     return function (req, res) {
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+            return;
+        }
+
         var groupModel = modelProvider.getModelByName('group');
 
         groupModel.find(function (err, groups) {
@@ -130,10 +131,7 @@ exports.listAllGroupsPage = function (modelProvider) {
 
 exports.listGroupsPage = function (modelProvider) {
     return function (req, res) {
-        if (!req.session.user) {
-            // TODO handle err
-            res.location('/');
-            res.redirect('/');
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
             return;
         }
 
@@ -177,9 +175,7 @@ exports.listGroupsPage = function (modelProvider) {
 
 exports.viewGroupPage = function (modelProvider) {
     return function (req, res) {
-        if (!req.session.user || !req.query.groupId) {
-            res.location('/');
-            res.redirect('/');
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
             return;
         }
 

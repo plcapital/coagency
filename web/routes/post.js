@@ -1,3 +1,5 @@
+var common = require('../utils/common');
+
 exports.createPost = function (modelProvider) {
     return function (req, res) {
         var postTitle = req.body.postTitle;
@@ -25,9 +27,12 @@ exports.createPost = function (modelProvider) {
 }
 
 exports.createPostPage = function (req, res) {
-    if (!req.session.user || !req.query.groupId) {
-        // TODO handle error
-        console.log('Not logged in, or not in a group');
+    if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+        return;
+    }
+
+    // Check to see this came from 
+    if (!req.query.groupId) {
         res.location('/');
         res.redirect('/');
     } else {
@@ -39,6 +44,10 @@ exports.createPostPage = function (req, res) {
 
 exports.listPostsPage = function (modelProvider) {
     return function (req, res) {
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+            return;
+        }
+
         var postModel = modelProvider.getModelByName('post');
 
         postModel.find(function (err, posts) {
@@ -56,6 +65,10 @@ exports.listPostsPage = function (modelProvider) {
 
 exports.viewPostPage = function (modelProvider, id) {
     return function (req, res) {
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+            return;
+        }
+
         var PostModel = modelProvider.getModelByName('post');
 
         PostModel.findById(id, function (err, post) {

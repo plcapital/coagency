@@ -5,11 +5,8 @@ block content
   if user
     p Hello #{user.username}, welcome to #{title}
     p
-      a(href="/logout") logout<br>
-      a(href="/listGroups") current groups<br>
-      a(href="/listPosts") current posts<br>
-      a(href="/listUsers") current users<br>
-      a(href="/createGroup") create new group<br>
+      a(href="/listGroups") My groups<br>
+      a(href="/createGroup") Create a new group<br>
   else
     p Welcome to #{title}
     p
@@ -24,3 +21,5 @@ block content
         button#buttonLogin(type="submit") Login
       | Not yet a user?&nbsp;
       a(href="/createUser") Register<br>
+      | Forgot your password?&nbsp;
+      a(href="/resetPassword") Request a password reset<br>

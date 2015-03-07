@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt');
+var common = require('../utils/common');
 
 exports.createUserPage = function (req, res) {
     res.render('user/createUser');
@@ -39,6 +40,10 @@ exports.createUser = function (modelProvider) {
 
 exports.listUsersPage = function (modelProvider) {
     return function (req, res) {
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+            return;
+        }
+
         var userModel = modelProvider.getModelByName('user');
 
         userModel.find(function (err, users) {
