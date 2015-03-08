@@ -11,4 +11,5 @@ block content
         Property listings:
     ul
         each listing, i in listings
-            li #{listing.location}<br>#{listing.description}
+            li
+                a(href="/viewListing?listingId=#{listing._id}") #{listing.location}<br>#{listing.description}

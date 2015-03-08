@@ -98,21 +98,29 @@ exports.listListingsPage = function (modelProvider) {
     }
 }
 
-exports.viewListingPage = function (modelProvider, id) {
+exports.viewListingPage = function (modelProvider) {
     return function (req, res) {
         if (common.redirectToIndexIfNotLoggedIn(req, res)) {
             return;
         }
 
+        var listingId = req.query.listingId;
+        if (!listingId) {
+            common.redirectToIndex(req, res);
+            return;
+        }
+
         var ListingModel = modelProvider.getModelByName('listing');
 
-        ListingModel.findById(id, function (err, listing) {
+        ListingModel.findById(listingId, function (err, listing) {
             if (err) {
                 res.send('find some listing failed: ' + err);
                 return;
             }
 
-            // TODO ...
+            res.render('listing/viewListing', {
+                listing: listing
+            });
         })
     }
 }
