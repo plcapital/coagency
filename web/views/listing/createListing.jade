@@ -6,52 +6,63 @@ block content
         each error, i in errors
             =error.msg
             br
-    form#formCreateListing(name="createListing", method="post", action="/createListing")
+    form(action="/createListing", class="basic-form", method="post", name="createListing")
         h2 Mandatory fields<br>
-        | Description:<br>
-        textarea(name="description", style="height: 100px; width: 400px;")
-        | <br>Location:
-        input(name="location", type="text")
-        | <br>Type:
-        input(name="type", type="radio", value="forSale")
-        | For Sale
-        input(name="type", type="radio", value="forRent")
-        | For Rent<br>
-        | Listing Category:
-        input(type="radio", value="residential", name="category")
-        | Residential
-        input(type="radio", value="commercial", name="category")
-        | Commercial<br>
-        | Property Type:
-        select(name="property")
-            option(value="terrace") 2-sty Terrace/Link House
-            option(value="condo") Condominium
-            option(value="bungalow") Bungalow
-        | <br>Land Area:
-        input(type="text", name="area")
-        | <br>Size Measure Code:
-        select(name="measure")
-            option(value="squareFeet") Square Feet
-            option(value="squareMeters") Square Meters
-        | <br>Asking Price:
-        input(type="text", name="price")
-        | <br>Bedrooms:
-        select(name="bedrooms")
-            option(value="1") 1
-            option(value="2") 2
-            option(value="3") 3
-            option(value="4") 4
-            option(value="5") More than 4
-        | <br>Bathrooms:
-        select(name="bathrooms")
-            option(value="1") 1
-            option(value="2") 2
-            option(value="3") 3
-            option(value="4") More than 3
-        | <br>Tenure:
-        select(name="tenure")
-            option(value="freehold") Freehold
-            option(value="leasehold") Leasehold
+        div(class="basic-input")
+            label(for="description") Description
+            textarea(name="description")
+        div(class="basic-input")
+            label(for="location") Location
+            input(name="location", type="text")
+        div(class="basic-input")
+            label(for="type") Type
+            | For Sale
+            input(name="type", type="radio", value="forSale")
+            | For Rent
+            input(name="type", type="radio", value="forRent")
+        div(class="basic-input")
+            label(for="category") Listing Category
+            | Residential
+            input(name="category", type="radio", value="residential")
+            | Commercial
+            input(name="category", type="radio", value="commercial")
+        div(class="basic-input")
+            label(for="property") Property Type
+            select(name="property")
+                option(value="terrace") 2-sty Terrace/Link House
+                option(value="condo") Condominium
+                option(value="bungalow") Bungalow
+        div(class="basic-input")
+            label(for="area") Land Area
+            input(name="area", type="text")
+        div(class="basic-input")
+            label(for="measure") Size Measure Code
+            select(name="measure")
+                option(value="squareFeet") Square Feet
+                option(value="squareMeters") Square Meters
+        div(class="basic-input")
+            label(for="price") Asking Price
+            input(name="price", type="text")
+        div(class="basic-input")
+            label(for="bedrooms") Bedrooms
+            select(name="bedrooms")
+                option(value="1") 1
+                option(value="2") 2
+                option(value="3") 3
+                option(value="4") 4
+                option(value="5") More than 4
+        div(class="basic-input")
+            label(for="bathrooms") Bathrooms
+            select(name="bathrooms")
+                option(value="1") 1
+                option(value="2") 2
+                option(value="3") 3
+                option(value="4") More than 3
+        div(class="basic-input")
+            label(for="tenure") Tenure
+            select(name="tenure")
+                option(value="freehold") Freehold
+                option(value="leasehold") Leasehold
         | <br>
         h2 Optional fields<br>
         | Auction:
