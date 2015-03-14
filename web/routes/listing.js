@@ -118,9 +118,17 @@ exports.viewListingPage = function (modelProvider) {
                 return;
             }
 
-            res.render('listing/viewListing', {
-                listing: listing
-            });
+            var CommentModel = modelProvider.getModelByName('comment');
+            CommentModel.find({ listingId: listingId }, function (err, comments) {
+                if (err) {
+                    res.send('Failed to find comments because of: ' + err);
+                    return;
+                }
+
+                res.render('listing/viewListing', {
+                    listing: listing, comments: comments
+                });
+            })
         })
     }
 }

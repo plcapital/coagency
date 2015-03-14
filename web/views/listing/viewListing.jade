@@ -14,3 +14,15 @@ block content
         | Bedrooms: #{listing.bedrooms}<br>
         | Bathrooms: #{listing.bathrooms}<br>
         | Tenure: #{listing.tenure}
+    if comments
+        h2 Comments
+        each comment, i in comments
+            div
+                label(for="text") #{comment.userId}
+                textarea(name="text", readonly="readonly") #{comment.text}
+    form(action="/createComment", class="basic-form", method="post", name="createComment")
+        div(class="basic-input")
+            label(for="text") Comment
+            textarea(name="text")
+        input(name="listingId", type="text", value="#{listing._id}")
+        button(type="submit") submit
