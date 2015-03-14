@@ -21,6 +21,7 @@ exports.setup = function (app, modelProvider) {
 
     app.get('/createListing', listing.createListingPage);
     app.get('/listListings', listing.listListingsPage(modelProvider)); // Admin only page
+    app.get('/myListings', listing.myListingsPage(modelProvider));
     app.get('/viewListing', listing.viewListingPage(modelProvider));
 
     app.get('/createUser', user.createUserPage);

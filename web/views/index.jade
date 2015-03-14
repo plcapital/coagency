@@ -5,6 +5,7 @@ block content
   if user
     p Hello #{user.username}, welcome to #{title}
     p
+      a(href="/myListings") My listings<br>
       a(href="/listGroups") My groups<br>
       a(href="/createGroup") Create a new group<br>
   else

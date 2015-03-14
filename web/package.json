@@ -1,7 +1,7 @@
 {
   "name": "coagency-app",
   "description": "Peter and Kohei's coagency app",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "private": true,
   "scripts": {
     "start": "node app.js"

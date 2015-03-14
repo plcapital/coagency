@@ -98,6 +98,27 @@ exports.listListingsPage = function (modelProvider) {
     }
 }
 
+exports.myListingsPage = function (modelProvider) {
+    return function (req, res) {
+        if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+            return;
+        }
+
+        var listingModel = modelProvider.getModelByName('listing');
+
+        listingModel.find({ userId: req.session.user._id }, function (err, listings) {
+            if (err) {
+                // TODO handle err
+                console.log(err);
+            } else {
+                res.render('listing/listListings', {
+                    listings: listings
+                });
+            }
+        });
+    }
+}
+
 exports.viewListingPage = function (modelProvider) {
     return function (req, res) {
         if (common.redirectToIndexIfNotLoggedIn(req, res)) {
