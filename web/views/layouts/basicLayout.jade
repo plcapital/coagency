@@ -10,12 +10,14 @@ html
         ul(class='first-of-type')
           li(class='yui3-menuitem')
             a(class='yui3-menuitem-content', href="/") Home
-          li(class='yui3-menuitem')
-            a(class='yui3-menuitem-content', href="/login") Login
-          li(class='yui3-menuitem')
-            a(class='yui3-menuitem-content', href="/createUser") Register
-          li(class='yui3-menuitem')
-            a(class='yui3-menuitem-content', href="/logout") Logout
+          if user
+            li(class='yui3-menuitem')
+              a(class='yui3-menuitem-content', href="/logout") Logout
+          else
+            li(class='yui3-menuitem')
+              a(class='yui3-menuitem-content', href="/login") Login
+            li(class='yui3-menuitem')
+              a(class='yui3-menuitem-content', href="/createUser") Register
     block content
     script
       | YUI().use('node-menunav', function(Y) {

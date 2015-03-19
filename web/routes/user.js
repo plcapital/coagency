@@ -2,7 +2,9 @@ var bcrypt = require('bcrypt');
 var common = require('../utils/common');
 
 exports.createUserPage = function (req, res) {
-    res.render('user/createUser');
+    res.render('user/createUser', {
+        user: req.session.user
+    });
 }
 
 exports.createUser = function (modelProvider) {
@@ -52,6 +54,7 @@ exports.listUsersPage = function (modelProvider) {
                 console.log(err);
             } else {
                 res.render('user/listUsers', {
+                    user: req.session.user,
                     users: users
                 });
             }

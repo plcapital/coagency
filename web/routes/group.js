@@ -52,6 +52,7 @@ exports.addGroupUserPage = function (modelProvider) {
             }
 
             res.render('group/addGroupUser', {
+                user: req.session.user,
                 group: group
             });
         });
@@ -104,6 +105,7 @@ exports.createGroupPage = function (req, res) {
     }
 
     res.render('group/createGroup', {
+        user: req.session.user,
         title: 'Add New Group'
     });
 }
@@ -122,6 +124,7 @@ exports.listAllGroupsPage = function (modelProvider) {
                 console.log(err);
             } else {
                 res.render('group/listGroups', {
+                    user: req.session.user,
                     groups: groups
                 });
             }
@@ -164,6 +167,7 @@ exports.listGroupsPage = function (modelProvider) {
                         console.log(err);
                     } else {
                         res.render('group/listGroups', {
+                            user: req.session.user,
                             groups: groups
                         });
                     }
@@ -203,7 +207,9 @@ exports.viewGroupPage = function (modelProvider) {
                         var isAdministrator = req.session.user._id == group.administrator;
 
                         res.render('group/viewGroup', {
-                            group: group, isAdministrator: isAdministrator, listings: listings
+                            user: req.session.user,
+                            group: group, isAdministrator: isAdministrator,
+                            listings: listings
                         });
                     }                    
                 });

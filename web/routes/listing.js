@@ -12,7 +12,9 @@ exports.createListing = function (modelProvider) {
         var errors = req.validationErrors(); 
         if (errors) {
             res.render('listing/createListing', {
-                title: 'Add New Listing', errors: errors, groupId: req.body.groupId
+                user: req.session.user,
+                title: 'Add New Listing',
+                errors: errors, groupId: req.body.groupId
             });
             return;
         }
@@ -72,7 +74,9 @@ exports.createListingPage = function (req, res) {
         res.redirect('/');
     } else {
         res.render('listing/createListing', {
-            title: 'Add New Listing', groupId: req.query.groupId
+            user: req.session.user,
+            title: 'Add New Listing',
+            groupId: req.query.groupId
         });
     }
 }
@@ -91,6 +95,7 @@ exports.listListingsPage = function (modelProvider) {
                 console.log(err);
             } else {
                 res.render('listing/listListings', {
+                    user: req.session.user,
                     listings: listings
                 });
             }
@@ -112,6 +117,7 @@ exports.myListingsPage = function (modelProvider) {
                 console.log(err);
             } else {
                 res.render('listing/listListings', {
+                    user: req.session.user,
                     listings: listings
                 });
             }
@@ -147,7 +153,9 @@ exports.viewListingPage = function (modelProvider) {
                 }
 
                 res.render('listing/viewListing', {
-                    listing: listing, comments: comments
+                    user: req.session.user,
+                    listing: listing,
+                    comments: comments
                 });
             })
         })

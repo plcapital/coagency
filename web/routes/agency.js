@@ -39,6 +39,7 @@ exports.createAgencyPage = function (req, res) {
     }
     
     res.render('agency/createAgency', {
+        user: req.session.user,
         title: 'Add New Agency'
     });
 }

@@ -23,7 +23,9 @@ exports.login = function (modelProvider) {
 };
 
 exports.loginPage = function (req, res) {
-    res.render('login/login');
+    res.render('login/login', {
+        user: req.session.user
+    });
 };
 
 exports.logoutPage = function (req, res) {
