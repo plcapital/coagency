@@ -4,7 +4,7 @@ var redirectToIndex = function(req, res) {
 }
 
 var redirectToIndexIfNoGroupContext = function(req, res) {
-    if (!res.session.group) {
+    if (!req.session.group) {
         redirectToIndex(req, res);
         return true;
     }

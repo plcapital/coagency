@@ -14,13 +14,13 @@ exports.createListing = function (modelProvider) {
             res.render('listing/createListing', {
                 user: req.session.user,
                 title: 'Add New Listing',
-                errors: errors, groupId: req.body.groupId
+                errors: errors
             });
             return;
         }
 
         var listingUserId = req.session.user._id;
-        var listingGroupId = req.body.groupId;
+        var listingGroupId = req.session.group._id;
         var listingDescription = req.body.description;
         var listingLocation = req.body.location;
         var listingType = req.body.type;
@@ -64,21 +64,14 @@ exports.createListing = function (modelProvider) {
 }
 
 exports.createListingPage = function (req, res) {
-    if (common.redirectToIndexIfNotLoggedIn(req, res)) {
+    if (common.redirectToIndexIfNoGroupContext(req, res)) {
         return;
     }
 
-    // Check to see this came from a group page
-    if (!req.query.groupId) {
-        res.location('/');
-        res.redirect('/');
-    } else {
-        res.render('listing/createListing', {
-            user: req.session.user,
-            title: 'Add New Listing',
-            groupId: req.query.groupId
-        });
-    }
+    res.render('listing/createListing', {
+        user: req.session.user,
+        title: 'Add New Listing'
+    });
 }
 
 exports.listListingsPage = function (modelProvider) {
@@ -151,6 +144,8 @@ exports.viewListingPage = function (modelProvider) {
                     res.send('Failed to find comments because of: ' + err);
                     return;
                 }
+
+                req.session.listing = listing;
 
                 res.render('listing/viewListing', {
                     user: req.session.user,
