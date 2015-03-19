@@ -11,7 +11,7 @@ exports.addGroupUser = function (modelProvider) {
             } else {
                 var GroupUserModel = modelProvider.getModelByName('groupUser');
 
-                GroupUserModel.findOne({ userId: user._id, groupId: req.body.groupId }, function (err, existingGroupUser) {
+                GroupUserModel.findOne({ userId: user._id, groupId: req.session.group._id }, function (err, existingGroupUser) {
                     if (existingGroupUser != null) {
                         res.send('User is already in this group.');
                         return;
@@ -19,7 +19,7 @@ exports.addGroupUser = function (modelProvider) {
 
                     var groupUser = new GroupUserModel({
                         userId: user._id,
-                        groupId: req.body.groupId
+                        groupId: req.session.group._id
                     });
 
                     groupUser.save(function (err) {
@@ -45,7 +45,7 @@ exports.addGroupUserPage = function (modelProvider) {
 
         var groupModel = modelProvider.getModelByName('group');
 
-        groupModel.findById(req.query.groupId, function (err, group) {
+        groupModel.findById(req.session.group._id, function (err, group) {
             if (err) {
                 res.send('Invalid group id!<br>' + err);
                 return;
@@ -206,9 +206,12 @@ exports.viewGroupPage = function (modelProvider) {
                     } else {
                         var isAdministrator = req.session.user._id == group.administrator;
 
+                        req.session.group = group;
+
                         res.render('group/viewGroup', {
                             user: req.session.user,
-                            group: group, isAdministrator: isAdministrator,
+                            group: group,
+                            isAdministrator: isAdministrator,
                             listings: listings
                         });
                     }                    

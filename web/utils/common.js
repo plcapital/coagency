@@ -3,6 +3,15 @@ var redirectToIndex = function(req, res) {
     res.redirect('/');
 }
 
+var redirectToIndexIfNoGroupContext = function(req, res) {
+    if (!res.session.group) {
+        redirectToIndex(req, res);
+        return true;
+    }
+
+    return false;
+}
+
 var redirectToIndexIfNotLoggedIn = function(req, res) {
     if (!req.session.user) {
         redirectToIndex(req, res);
@@ -14,5 +23,6 @@ var redirectToIndexIfNotLoggedIn = function(req, res) {
 
 module.exports = {
   redirectToIndex: redirectToIndex,
+  redirectToIndexIfNoGroupContext: redirectToIndexIfNoGroupContext,
   redirectToIndexIfNotLoggedIn: redirectToIndexIfNotLoggedIn
 }
