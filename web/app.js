@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var express = require('express');
+var express = require('express');  
 var http = require('http');
 var MongoStore = require('connect-mongo')(express);
 var expressValidator = require('express-validator');
@@ -12,7 +12,7 @@ var path = require('path');
 var gets = require('./get');
 var posts = require('./post');
 
-var app = express();
+var app = express();     //instantiates Express and assigns app variable to it
 
 // all environments
 app.set('port', process.env.PORT || 3000);

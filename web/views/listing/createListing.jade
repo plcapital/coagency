@@ -9,11 +9,11 @@ block content
     form(action="/createListing", class="basic-form", method="post", name="createListing")
         h2 Mandatory fields<br>
         div(class="basic-input")
-            label(for="description") Description
-            textarea(name="description")
-        div(class="basic-input")
-            label(for="location") Location
-            input(name="location", type="text")
+            label(for="coagency") Co-Agency Listing
+            | Co-Agency
+            input(name="coagency", type="radio", value="Co-Agency")
+            | Non Co-Agency
+            input(name="non co-agency", type="radio", value="Non Co-Agency")
         div(class="basic-input")
             label(for="type") Type
             | For Sale
@@ -27,11 +27,23 @@ block content
             | Commercial
             input(name="category", type="radio", value="commercial")
         div(class="basic-input")
+            label(for="coagency") Co-Agency Listing
+            select(name="coagency")
+                option(value="coagency") Co-Agency
+                option(value="non-coagency") Non Co-Agency
+        div(class="basic-input")
             label(for="property") Property Type
             select(name="property")
-                option(value="terrace") 2-sty Terrace/Link House
-                option(value="condo") Condominium
-                option(value="bungalow") Bungalow
+                option(value="apartment") Apartment/Flat
+                option(value="condominium") Condominium/Service Residence
+                option(value="terrace") Terrace/Link/Town House
+                option(value="bungalow") Semi-D/Bungalow
+        div(class="basic-input")
+            label(for="description") Description
+            textarea(name="description")
+        div(class="basic-input")
+            label(for="location") Location
+            input(name="location", type="text")
         div(class="basic-input")
             label(for="area") Land Area
             input(name="area", type="text")

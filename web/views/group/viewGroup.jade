@@ -8,8 +8,7 @@ block content
         a(href="/addGroupUser?groupId=#{group._id}") Add user to group<br>
     a(href="/createListing?groupId=#{group._id}") Add new listing
     h3.
-        Property listings:
+        Property locations:
     ul
-        each listing, i in listings
-            li
-                a(href="/viewListing?listingId=#{listing._id}") #{listing.location}<br>#{listing.description}
+        each location, i in locations
+            a(href="/listLocation?locationId=#{location._id}") #{location.name}

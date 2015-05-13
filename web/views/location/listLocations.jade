@@ -1,0 +1,9 @@
+extends ../layouts/basicLayout
+block content
+    h1.
+        Locations
+    ul
+        each location, i in locations
+            li=location.name
+                | &nbsp;-&nbsp;
+                =location.description

@@ -96,6 +96,7 @@ exports.listListingsPage = function (modelProvider) {
     }
 }
 
+
 exports.myListingsPage = function (modelProvider) {
     return function (req, res) {
         if (common.redirectToIndexIfNotLoggedIn(req, res)) {

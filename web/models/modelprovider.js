@@ -2,6 +2,7 @@ var Agency = require('./agency');
 var Comment = require('./comment');
 var Group = require('./group');
 var Listing = require('./listing');
+var Location = require('./location');
 var User = require('./user');
 
 var mongoose = require("mongoose");
@@ -12,6 +13,7 @@ mongoose.model('agency', Agency.AgencySchema);
 mongoose.model('comment', Comment.CommentSchema);
 mongoose.model('group', Group.GroupSchema);
 mongoose.model('listing', Listing.ListingSchema);
+mongoose.model('location', Location.LocationSchema);
 mongoose.model('user', User.UserSchema);
 mongoose.model('groupUser', User.GroupUserSchema);
 
