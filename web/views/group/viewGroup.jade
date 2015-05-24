@@ -6,9 +6,13 @@ block content
         #{group.description}
     if isAdministrator
         a(href="/addGroupUser?groupId=#{group._id}") Add user to group<br>
-    a(href="/createListing?groupId=#{group._id}") Add new listing
+        a(href="/createListing?groupId=#{group._id}") Add new listing
     h3.
-        Property locations:
-    //ul
-    //    each location, i in locations
-    //        a(href="/listLocation?locationId=#{location._id}") #{location.name}
+        Property listings:
+    form#formSearchListings(action="/searchListings", method="post", name="searchListings")
+        input#inputQuery(name="query", type="text")
+        button#buttonSearch(type="submit") search
+    ul
+        each listing, i in listings
+            li
+                a(href="/viewListing?listingId=#{listing._id}") #{listing.location}<br>#{listing.description}
