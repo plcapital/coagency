@@ -18,6 +18,7 @@ exports.setup = function (app, modelProvider) {
     app.post('/login', login.login(modelProvider));
     
     app.post('/createListing', listing.createListing(modelProvider));
+    app.post('/searchListings', listing.searchListings(modelProvider));
     
     app.post('/createUser', user.createUser(modelProvider));
 }

@@ -119,6 +119,24 @@ exports.myListingsPage = function (modelProvider) {
     }
 }
 
+exports.searchListings = function (modelProvider) {
+    return function (req, res) {
+        var listingModel = modelProvider.getModelByName('listing');
+
+        listingModel.find({ description: new RegExp(req.body.query) }, function (err, listings) {
+            if (err) {
+                // TODO handle err
+                console.log(err);
+            } else {
+                res.render('listing/listListings', {
+                    user: req.session.user,
+                    listings: listings
+                });
+            }
+        });
+    }
+}
+
 exports.viewListingPage = function (modelProvider) {
     return function (req, res) {
         if (common.redirectToIndexIfNotLoggedIn(req, res)) {
