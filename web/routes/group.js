@@ -9,6 +9,13 @@ exports.addGroupUser = function (modelProvider) {
                 // TODO handle err
                 console.log(err);
             } else {
+                if (user == null) {
+                    // TODO add error message here
+                    res.location('/listGroups');
+                    res.redirect('/listGroups');
+                    return;
+                }
+
                 var GroupUserModel = modelProvider.getModelByName('groupUser');
 
                 GroupUserModel.findOne({ userId: user._id, groupId: req.session.group._id }, function (err, existingGroupUser) {
