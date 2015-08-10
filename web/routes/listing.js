@@ -164,14 +164,45 @@ exports.viewListingPage = function (modelProvider) {
                     return;
                 }
 
-                req.session.listing = listing;
+                var userIds = [];
 
-                res.render('listing/viewListing', {
-                    user: req.session.user,
-                    listing: listing,
-                    comments: comments
+                for (var i = 0; i < comments.length; ++i) {
+                    if (userIds.indexOf(comments[i].userId) === -1) {
+                        userIds.push(comments[i].userId);
+                    }
+                }
+
+                var UserModel = modelProvider.getModelByName('user');
+                UserModel.find({ _id: { $in: userIds }}, function (err, users) {
+                    if (err) {
+                        res.send('Failed to find users for [' + userIds + ']\n' + err);
+                        return;
+                    }
+
+                    for (var i = 0; i < comments.length; ++i) {
+                        var comment = comments[i];
+                        for (var i2 = 0; i2 < users.length; ++i2) {
+                            var user = users[i2];
+                            if (comment.userId === user._id.toString()) {
+                                comment.userId = user.username;
+                                console.log('Modified: ' + comment);
+                                break;
+                            }
+                        }
+
+                    }
+
+                    console.log(comments);
+
+                    res.render('listing/viewListing', {
+                        user: req.session.user,
+                        listing: listing,
+                        comments: comments
+                    });
                 });
-            })
-        })
+
+                // TODO error, something went wrong here!
+            });
+        });
     }
 }
