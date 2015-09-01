@@ -1,16 +1,123 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* - - - - - - - - - - - - - - - - - - - - - - -
+GLOBAL FIXES
+- - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* box-sizing applied to a universal selector changes the box model so that border and padding cut into the height/width of the box rather than expanding it. Explanation here: http://css-tricks.com/box-sizing/ */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Add the "group" class to a container element to contain it's floats (without needing to specify a fixed height). See: http://nicolasgallagher.com/micro-clearfix-hack. If you need a quick refresher on working with floats I recommend reading: http://css-tricks.com/all-about-floats. */
+.group:before,
+.group:after {
+    content:"";
+    display:table;
+}
+.group:after {
+    clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: #0F0F0F;
 }
 
 a {
-  color: #00B7FF;
+    color: #555555;
 }
 
-.basic-form { padding:20px; }
+body {
+    background-color: #FCFCFC;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 100%;
+    line-height: 1.5;
+}
 
-.basic-form .basic-input { padding: 4px; margin:1px; background: #eee; }
+h1 {
+    color: #FCFCFC;
+    font-weight: lighter;
+    padding: 0;
+    margin: 0 1em;
+}
 
-.basic-form .basic-input label { display:inline-block; width:120px; margin-left:5px; }
+h2 {
+    color: #FCFCFC;
+    font-weight: lighter;
+    padding: 0 0 1em;
+}
 
-.basic-form .basic-input input { display:inline-block; }
+p {
+    margin: 0;
+}
+
+ul {
+    /*margin: 0 0 1em;*/
+}
+
+#navigation_bar {
+    background-color: #404040;
+    font-weight: lighter;
+}
+
+#navigation_bar a {
+    color: #FCFCFC;
+    text-decoration: none;
+}
+
+#navigation_bar a:hover {
+    color: #E5E5E5;
+}
+
+#navigation_bar li {
+    display: inline;
+    margin-left: 1em;
+}
+
+.content {
+}
+
+.footer {
+}
+
+.headings {
+    background-color: #404040;
+}
+
+.login {
+    margin: 0;
+    padding: 1em 0;
+}
+
+.login button {
+    background-color: #FCFCFC;
+    border: none;
+    /*color: #699A33;*/
+}
+
+.login input {
+    background-color: #FCFCFC;
+    border: none;
+    border-bottom: solid 0.1em #404040;
+    text-align: center;
+    transition: border 0.3s;
+}
+.login input:focus,
+.login input.focus {
+    border-bottom: solid 0.1em #E5E5E5;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - -
+MEDIA QUERIES FOR LARGER BREAKPOINTS BEGIN HERE
+- - - - - - - - - - - - - - - - - - - - - - - - */
+
+@media screen and (min-width:500px) {
+    body {
+        text-align: center;
+    }
+}

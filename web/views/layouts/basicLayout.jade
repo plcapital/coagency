@@ -1,27 +1,22 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/basicStyle.css')
-    script(src='/javascripts/yui3/yui/yui-min.js')
-  body(class='yui3-skin-sam')
-    div(id='navigationbar', class='yui3-menu yui3-menu-horizontal')
-      div(class='yui3-menu-content')
-        ul(class='first-of-type')
-          li(class='yui3-menuitem')
-            a(class='yui3-menuitem-content', href="/") Home
-          if user
-            li(class='yui3-menuitem')
-              a(class='yui3-menuitem-content', href="/logout") Logout
-          else
-            li(class='yui3-menuitem')
-              a(class='yui3-menuitem-content', href="/login") Login
-            li(class='yui3-menuitem')
-              a(class='yui3-menuitem-content', href="/createUser") Register
-    block content
-    script
-      | YUI().use('node-menunav', function(Y) {
-      |   var menu = Y.one("#navigationbar");
-      |   menu.plug(Y.Plugin.NodeMenuNav);
-      |   menu.get("ownerDocument").get("documentElement").removeClass("yui3-loading");
-      | });
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/basicStyle.css')
+    body
+        div(id='navigation_bar')
+            ul
+                li
+                    a(href="/") Home
+                if user
+                    li
+                        a(href="/logout") Logout
+                else
+                    li
+                        a(href="/login") Login
+                    li
+                        a(href="/createUser") Register
+        div(id='content')
+            block content
+        div(id='footer')
+            block footer
