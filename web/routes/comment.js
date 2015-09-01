@@ -2,7 +2,7 @@ exports.createComment = function (modelProvider) {
     return function (req, res) {
         req.checkBody('text', 'comment text is required').notEmpty();
 
-        var listingId = req.session.listing._id;
+        var listingId = req.body.listingId;
 
         var errors = req.validationErrors(); 
         if (errors) {

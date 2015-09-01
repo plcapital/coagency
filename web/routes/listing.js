@@ -96,7 +96,6 @@ exports.listListingsPage = function (modelProvider) {
     }
 }
 
-
 exports.myListingsPage = function (modelProvider) {
     return function (req, res) {
         if (common.redirectToIndexIfNotLoggedIn(req, res)) {
@@ -185,14 +184,13 @@ exports.viewListingPage = function (modelProvider) {
                             var user = users[i2];
                             if (comment.userId === user._id.toString()) {
                                 comment.userId = user.username;
-                                console.log('Modified: ' + comment);
                                 break;
                             }
                         }
 
                     }
 
-                    console.log(comments);
+                    req.session.listing = listing;
 
                     res.render('listing/viewListing', {
                         user: req.session.user,

@@ -20,8 +20,9 @@ block content
             div
                 label(for="text") #{comment.userId}
                 textarea(name="text", readonly="readonly") #{comment.text}
-    form(action="/createComment", class="basic-form", method="post", name="createComment")
-        div(class="basic-input")
+    form(action="/createComment", method="post", name="createComment")
+        div
             label(for="text") Comment
             textarea(name="text")
+            input(name="listingId", readonly="readonly", type="hidden" value="#{listing._id}")
         button(type="submit") submit
