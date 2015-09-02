@@ -1,9 +1,12 @@
 extends ../layouts/layout
 block content
-    h1.
-        Listings
-    ul
-        each listing, i in listings
-            li=listing.location
-                | &nbsp;-&nbsp;
-                =listing.description
+    div(class="headings")
+        h1 My Listings
+        h2 Currently active listings.
+    div(class="content")
+        ul
+            each listing, i in listings
+                li=listing.location
+                    | &nbsp;-&nbsp;
+                    =listing.description
+    div(class="content")

@@ -42,7 +42,7 @@ exports.addGroupUser = function (modelProvider) {
             }
         });
     }
-}
+};
 
 exports.addGroupUserPage = function (modelProvider) {
     return function (req, res) {
@@ -63,10 +63,8 @@ exports.addGroupUserPage = function (modelProvider) {
                 group: group
             });
         });
-
-        ;  
     }
-}
+};
 
 exports.createGroup = function (modelProvider) {
     return function (req, res) {
@@ -104,7 +102,7 @@ exports.createGroup = function (modelProvider) {
             }
         })
     }
-}
+};
 
 exports.createGroupPage = function (req, res) {
     if (common.redirectToIndexIfNotLoggedIn(req, res)) {
@@ -112,10 +110,9 @@ exports.createGroupPage = function (req, res) {
     }
 
     res.render('group/createGroup', {
-        user: req.session.user,
-        title: 'Add New Group'
+        user: req.session.user
     });
-}
+};
 
 exports.listAllGroupsPage = function (modelProvider) {
     return function (req, res) {
@@ -137,7 +134,7 @@ exports.listAllGroupsPage = function (modelProvider) {
             }
         });
     }
-}
+};
 
 exports.listGroupsPage = function (modelProvider) {
     return function (req, res) {
@@ -182,7 +179,7 @@ exports.listGroupsPage = function (modelProvider) {
             }
         });
     }
-}
+};
 
 exports.viewGroupPage = function (modelProvider) {
     return function (req, res) {
@@ -209,7 +206,6 @@ exports.viewGroupPage = function (modelProvider) {
                     if (err) {
                         // TODO handle error
                         res.send('');
-                        return;
                     } else {
                         var isAdministrator = req.session.user._id == group.administrator;
 
@@ -226,4 +222,4 @@ exports.viewGroupPage = function (modelProvider) {
             }
         })
     }
-}
+};
