@@ -34,4 +34,4 @@ exports.createComment = function (modelProvider) {
             }
         })
     }
-}
+};
