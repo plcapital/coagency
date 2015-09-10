@@ -4,9 +4,8 @@ block content
         h1 My Listings
         h2 Currently active listings.
     div(class="content")
-        ul
+        ul(class="margin_left_big")
             each listing, i in listings
-                li=listing.location
-                    | &nbsp;-&nbsp;
-                    =listing.description
+                li
+                    a(href="/viewListing?listingId=#{listing._id}") #{listing.location}&nbsp;-&nbsp;#{listing.description}
     div(class="content")
