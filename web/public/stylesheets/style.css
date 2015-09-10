@@ -43,21 +43,17 @@ h1 {
     color: #FCFCFC;
     font-weight: lighter;
     padding: 0;
-    margin: 0 1em;
+    margin: 0 0.5em;
 }
 
 h2 {
     color: #FCFCFC;
     font-weight: lighter;
-    padding: 0 0 1em;
+    padding: 0 1em 1em;
 }
 
 p {
-    margin: 0;
-}
-
-ul {
-    /*margin: 0 0 1em;*/
+    margin: 0 1em;
 }
 
 #navigation_bar {
@@ -107,9 +103,14 @@ ul {
     text-align: center;
     transition: border 0.3s;
 }
+
 .login input:focus,
 .login input.focus {
     border-bottom: solid 0.1em #E5E5E5;
+}
+
+.margin_left {
+    margin: 0 0 0 1em;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - -
