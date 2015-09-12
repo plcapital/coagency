@@ -17,8 +17,8 @@ block content
             p Sign in:
                 // This login form is duplicated from login.jade, see if there is a way to share code...
                 form(action="/login", class="login", method="post", name="login")
-                    input(class="margin_left", type="text", name="username", value="USERNAME")
-                    input(type="password", name="password", value="password")
+                    input(class="margin_left", type="text", name="username", placeholder="USERNAME")
+                    input(type="password", name="password", placeholder="password")
                     button(type="submit") Login
     div(class="footer")
         if !user

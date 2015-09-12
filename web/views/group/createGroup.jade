@@ -1,15 +1,18 @@
 extends ../layouts/layout
+block extra_stylesheets
+    link(rel='stylesheet', href='/stylesheets/registration.css')
+    script(src='//code.jquery.com/jquery-1.11.3.min.js')
+    script(src='/javascripts/validation.js')
 block content
     div(class="headings")
-        h1 Create a New Group
-        h2 Please enter the fields below.
+        h1 Create Group
+        h2 Choose a name and description.
     div(class="content")
-    form#formCreateGroup(name="createGroup", method="post", action="/createGroup")
-        | *Name:
-        input#inputName(type="text", placeholder="Name", name="groupName")
-        | <br>
-        | *Description:
-        input#inputDescription(type="text", placeholder="Description", name="groupDescription")
-        | <br>
-        button#buttonSubmit(type="submit") submit
+        div(id='registration')
+            form(action='/createGroup', method='post', onsubmit='return validateGroupCreation()')
+                label Name
+                input(id='name', type="text", name="groupName")
+                label Description
+                input(id='description', type="text", name="groupDescription")
+                button(class='margin_left', type="submit") Create
     div(class="footer")
