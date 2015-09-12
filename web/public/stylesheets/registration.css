@@ -1,0 +1,22 @@
+#registration form {
+    width: 27em;
+    margin: 0 auto;
+}
+
+#registration label, input {
+    display: inline-block;
+}
+
+#registration label {
+    width: 30%;
+    text-align: right;
+}
+
+#registration label + input {
+    width: 30%;
+    /*
+        large margin-right to force the next element to the new-line and margin-left to create a gutter between
+        the label and input
+    */
+    margin: 0 30% 0 4%;
+}

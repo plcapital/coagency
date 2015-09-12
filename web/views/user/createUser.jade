@@ -1,19 +1,21 @@
 extends ../layouts/layout
+block extra_stylesheets
+    link(rel='stylesheet', href='/stylesheets/registration.css')
 block content
-    h1.
-        Register
-    form#formCreateUser(action="/createUser", class="basic-form", method="post", name="createUser")
-        div#divUsername(class="basic-input")
-            label#labelUsername(for="username") Username
-            input#inputUsername(name="username", type="text")        
-        div#divPassword(class="basic-input")
-            label#labelPassword(for="password") Password
-            input#inputPassword(name="password", type="password")
-            label#labelPasswordConfirm(for="passwordConfirm") Confirm password
-            input#inputPasswordConfirm(name="passwordConfirm", type="password")
-        div#divEmail(class="basic-input")
-            label#labelEmail(for="email") Email
-            input#inputEmail(name="email", type="text")
-            label#labelEmailConfirm(for="emailConfirm") Confirm email
-            input#inputEmailConfirm(name="emailConfirm", type="text")
-        button#buttonRegister(type="submit") Register
+    div(class="headings")
+        h1 Register
+        h2 Join as a new member.
+    div(class="content")
+        div(id="registration")
+            form(action="/createUser", method="post", name="createUser")
+                label Username
+                input(name="username", type="text")
+                label Password
+                input(name="password", type="password")
+                label Confirm password
+                input(name="passwordConfirm", type="password")
+                label Email
+                input(name="email", type="text")
+                label Confirm email
+                input(name="emailConfirm", type="text")
+                button(id="register-button", type="submit") Register
