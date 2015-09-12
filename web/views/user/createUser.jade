@@ -1,21 +1,23 @@
 extends ../layouts/layout
 block extra_stylesheets
     link(rel='stylesheet', href='/stylesheets/registration.css')
+    script(src='//code.jquery.com/jquery-1.11.3.min.js')
+    script(src='/javascripts/validation.js')
 block content
     div(class="headings")
         h1 Register
         h2 Join as a new member.
     div(class="content")
         div(id="registration")
-            form(action="/createUser", method="post", name="createUser")
+            form(action="/createUser", method="post", name="createUser", onsubmit='return validateRegistration()')
                 label Username
                 input(name="username", type="text")
                 label Password
-                input(name="password", type="password")
+                input(id='password', name="password", type="password")
                 label Confirm password
-                input(name="passwordConfirm", type="password")
+                input(id='passwordConfirm', name="passwordConfirm", type="password")
                 label Email
-                input(name="email", type="text")
+                input(id='email', name="email", type="text")
                 label Confirm email
-                input(name="emailConfirm", type="text")
+                input(id='emailConfirm', name="emailConfirm", type="text")
                 button(id="register-button", type="submit") Register
