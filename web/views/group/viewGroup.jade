@@ -1,18 +1,19 @@
 extends ../layouts/layout
 block content
-    h1.
-        Group - #{group.name}
-    h2.
-        #{group.description}
-    if isAdministrator
-        a(href="/addGroupUser?groupId=#{group._id}") Add user to group<br>
-        a(href="/createListing?groupId=#{group._id}") Add new listing
-    h3.
-        Property listings:
-    form#formSearchListings(action="/searchListings", method="post", name="searchListings")
-        input#inputQuery(name="query", type="text")
-        button#buttonSearch(type="submit") search
-    ul
-        each listing, i in listings
-            li
-                a(href="/viewListing?listingId=#{listing._id}") #{listing.location}<br>#{listing.description}
+    div(class='headings')
+        h1 #{group.name}
+        h2 #{group.description}
+    div(class='content')
+        p Property listings:
+            form#formSearchListings(action="/searchListings", class='margin_left' method="post", name="searchListings")
+                input#inputQuery(name="query", type="text")
+                button#buttonSearch(type="submit") search
+            ul(class="margin_left_big")
+                each listing, i in listings
+                    li
+                        a(href="/viewListing?listingId=#{listing._id}") #{listing.location}&nbsp;-&nbsp;#{listing.description}
+    div(class='footer')
+        if isAdministrator
+            p
+                a(href="/addGroupUser?groupId=#{group._id}") Add user to group<br>
+                a(href="/createListing?groupId=#{group._id}") Add new listing
