@@ -13,7 +13,7 @@ block content
                     li
                         a(href="/viewListing?listingId=#{listing._id}") #{listing.location}&nbsp;-&nbsp;#{listing.description}
     div(class='footer')
-        if isAdministrator
-            p
+        p
+            if isAdministrator
                 a(href="/addGroupUser?groupId=#{group._id}") Add user to group<br>
-                a(href="/createListing?groupId=#{group._id}") Add new listing
+            a(href="/createListing?groupId=#{group._id}") Add new listing
