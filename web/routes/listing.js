@@ -61,7 +61,7 @@ exports.createListing = function (modelProvider) {
             }
         })
     }
-}
+};
 
 exports.createListingPage = function (req, res) {
     if (common.redirectToIndexIfNoGroupContext(req, res)) {
@@ -69,10 +69,9 @@ exports.createListingPage = function (req, res) {
     }
 
     res.render('listing/createListing', {
-        user: req.session.user,
-        title: 'Add New Listing'
+        user: req.session.user
     });
-}
+};
 
 exports.listListingsPage = function (modelProvider) {
     return function (req, res) {
@@ -94,7 +93,7 @@ exports.listListingsPage = function (modelProvider) {
             }
         });
     }
-}
+};
 
 exports.myListingsPage = function (modelProvider) {
     return function (req, res) {
@@ -116,7 +115,7 @@ exports.myListingsPage = function (modelProvider) {
             }
         });
     }
-}
+};
 
 exports.searchListings = function (modelProvider) {
     return function (req, res) {
@@ -134,7 +133,7 @@ exports.searchListings = function (modelProvider) {
             }
         });
     }
-}
+};
 
 exports.viewListingPage = function (modelProvider) {
     return function (req, res) {
@@ -203,4 +202,4 @@ exports.viewListingPage = function (modelProvider) {
             });
         });
     }
-}
+};

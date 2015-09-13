@@ -1,97 +1,101 @@
 extends ../layouts/layout
 block content
-    h1= title
-    if errors
-        h2 Errors
-        each error, i in errors
-            =error.msg
-            br
-    form(action="/createListing", class="basic-form", method="post", name="createListing")
-        h2 Mandatory fields<br>
-        div(class="basic-input")
-            label(for="coagency") Co-Agency Listing
-            | Co-Agency
-            input(name="coagency", type="radio", value="Co-Agency")
-            | Non Co-Agency
-            input(name="non co-agency", type="radio", value="Non Co-Agency")
-        div(class="basic-input")
-            label(for="type") Type
-            | For Sale
-            input(name="type", type="radio", value="forSale")
-            | For Rent
-            input(name="type", type="radio", value="forRent")
-        div(class="basic-input")
-            label(for="category") Listing Category
-            | Residential
-            input(name="category", type="radio", value="residential")
-            | Commercial
-            input(name="category", type="radio", value="commercial")
-        div(class="basic-input")
-            label(for="coagency") Co-Agency Listing
-            select(name="coagency")
-                option(value="coagency") Co-Agency
-                option(value="non-coagency") Non Co-Agency
-        div(class="basic-input")
-            label(for="property") Property Type
-            select(name="property")
-                option(value="apartment") Apartment/Flat
-                option(value="condominium") Condominium/Service Residence
-                option(value="terrace") Terrace/Link/Town House
-                option(value="bungalow") Semi-D/Bungalow
-        div(class="basic-input")
-            label(for="description") Description
-            textarea(name="description")
-        div(class="basic-input")
-            label(for="location") Location
-            input(name="location", type="text")
-        div(class="basic-input")
-            label(for="area") Land Area
-            input(name="area", type="text")
-        div(class="basic-input")
-            label(for="measure") Size Measure Code
-            select(name="measure")
-                option(value="squareFeet") Square Feet
-                option(value="squareMeters") Square Meters
-        div(class="basic-input")
-            label(for="price") Asking Price
-            input(name="price", type="text")
-        div(class="basic-input")
-            label(for="bedrooms") Bedrooms
-            select(name="bedrooms")
-                option(value="1") 1
-                option(value="2") 2
-                option(value="3") 3
-                option(value="4") 4
-                option(value="5") More than 4
-        div(class="basic-input")
-            label(for="bathrooms") Bathrooms
-            select(name="bathrooms")
-                option(value="1") 1
-                option(value="2") 2
-                option(value="3") 3
-                option(value="4") More than 3
-        div(class="basic-input")
-            label(for="tenure") Tenure
-            select(name="tenure")
-                option(value="freehold") Freehold
-                option(value="leasehold") Leasehold
-        | <br>
-        h2 Optional fields<br>
-        | Auction:
-        input(type="checkbox", value="true", name="isAuction")
-        // would like to use native HTML5 date input, but unfortunately browser support is lacking
-        input(type="text", placeholder="dd/MM/yyyy time", name="auctionDate")
-        | <br>Direction:
-        select(name="direction")
-            option(value="unknown") Unknown
-            option(value="north") North
-            option(value="east") East
-            option(value="south") South
-            option(value="west") West
-        | <br>Occupied:
-        select(name="status")
-            option(value="vacant") Vacant
-            option(value="occupied") Occupied
-        | <br>
-        | <br>
-        button(type="submit") submit
+    div(class="headings")
+        h1 Add New Listing
+        h2 Share a listing Malaysia.
+    div(class="content")
+        form(action="/create    Listing", class="basic-form", method="post", name="createListing")
+            h3 Mandatory fields<br>
+            div(class="basic-input")
+                label(for="coagency") Co-Agency Listing
+                | Co-Agency
+                input(name="coagency", type="radio", value="Co-Agency")
+                | Non Co-Agency
+                input(name="non co-agency", type="radio", value="Non Co-Agency")
+            div(class="basic-input")
+                label(for="type") Type
+                | For Sale
+                input(name="type", type="radio", value="forSale")
+                | For Rent
+                input(name="type", type="radio", value="forRent")
+            div(class="basic-input")
+                label(for="category") Listing Category
+                | Residential
+                input(name="category", type="radio", value="residential")
+                | Commercial
+                input(name="category", type="radio", value="commercial")
+            div(class="basic-input")
+                label(for="coagency") Co-Agency Listing
+                select(name="coagency")
+                    option(value="coagency") Co-Agency
+                    option(value="non-coagency") Non Co-Agency
+            div(class="basic-input")
+                label(for="property") Property Type
+                select(name="property")
+                    option(value="apartment") Apartment/Flat
+                    option(value="condominium") Condominium/Service Residence
+                    option(value="terrace") Terrace/Link/Town House
+                    option(value="bungalow") Semi-D/Bungalow
+            div(class="basic-input")
+                label(for="description") Description
+                textarea(name="description")
+            div(class="basic-input")
+                label(for="location") Location
+                input(name="location", type="text")
+            div(class="basic-input")
+                label(for="area") Land Area
+                input(name="area", type="text")
+            div(class="basic-input")
+                label(for="measure") Size Measure Code
+                select(name="measure")
+                    option(value="squareFeet") Square Feet
+                    option(value="squareMeters") Square Meters
+            div(class="basic-input")
+                label(for="price") Asking Price
+                input(name="price", type="text")
+            div(class="basic-input")
+                label(for="bedrooms") Bedrooms
+                select(name="bedrooms")
+                    option(value="1") 1
+                    option(value="2") 2
+                    option(value="3") 3
+                    option(value="4") 4
+                    option(value="5") More than 4
+            div(class="basic-input")
+                label(for="bathrooms") Bathrooms
+                select(name="bathrooms")
+                    option(value="1") 1
+                    option(value="2") 2
+                    option(value="3") 3
+                    option(value="4") More than 3
+            div(class="basic-input")
+                label(for="tenure") Tenure
+                select(name="tenure")
+                    option(value="freehold") Freehold
+                    option(value="leasehold") Leasehold
+            | <br>
+            h3 Optional fields<br>
+            | Auction:
+            input(type="checkbox", value="true", name="isAuction")
+            // would like to use native HTML5 date input, but unfortunately browser support is lacking
+            input(type="text", placeholder="dd/MM/yyyy time", name="auctionDate")
+            | <br>Direction:
+            select(name="direction")
+                option(value="unknown") Unknown
+                option(value="north") North
+                option(value="east") East
+                option(value="south") South
+                option(value="west") West
+            | <br>Occupied:
+            select(name="status")
+                option(value="vacant") Vacant
+                option(value="occupied") Occupied
+            | <br>
+            | <br>
+            button(type="submit") submit
+    div(class="footer")
+        if errors
+            h3 Errors
+            each error, i in errors
+                =error.msg
+                br
