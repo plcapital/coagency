@@ -1,10 +1,11 @@
 extends ../layouts/layout
 block content
-    h1.
-        Add user to #{group.name}
-
-    form#formAddUser(action="/addGroupUser", class="basic-form", method="post", name="login")
-        div#divUsername(class="basic-input")
-            label#labelUsername(for="username") Username
-            input#inputUsername(type="text", name="username")
-        button#buttonLogin(type="submit") Add
+    div(class="headings")
+        h1 Add user to #{group.name}
+        h2 Please enter a valid username.
+    div(class="content")
+        form#formAddUser(action="/addGroupUser", class="basic-form", method="post", name="login")
+            div#divUsername(class="basic-input")
+                label#labelUsername(for="username") Username
+                input#inputUsername(type="text", name="username")
+            button#buttonLogin(type="submit") Add
