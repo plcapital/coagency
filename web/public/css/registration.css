@@ -20,3 +20,15 @@
     */
     margin: 0 30% 0 4%;
 }
+
+.error {
+    background-color: #E5E5E5;
+    color: red;
+    font-size: .75em;
+}
+
+label.error {
+    display: inline;
+    margin-left: 1em;
+    width: auto;
+}

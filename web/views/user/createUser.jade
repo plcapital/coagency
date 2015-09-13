@@ -1,23 +1,27 @@
 extends ../layouts/layout
 block extra_stylesheets
-    link(rel='stylesheet', href='/stylesheets/registration.css')
-    script(src='//code.jquery.com/jquery-1.11.3.min.js')
-    script(src='/javascripts/validation.js')
+    link(rel="stylesheet", href="/css/registration.css")
+    script(src="//code.jquery.com/jquery-1.11.3.min.js")
+    script(src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js")
+    script(src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js")
+    script(src="/js/registration.js")
 block content
     div(class="headings")
         h1 Register
         h2 Join as a new member.
     div(class="content")
         div(id="registration")
-            form(action="/createUser", method="post", name="createUser", onsubmit='return validateRegistration()')
+            form(action="/createUser", id="register", method="post", name="createUser")
                 label Username
                 input(name="username", type="text")
                 label Password
-                input(id='password', name="password", type="password")
+                input(id="password", name="password", type="password")
                 label Confirm password
-                input(id='passwordConfirm', name="passwordConfirm", type="password")
+                input(id="password_confirm", name="password_confirm", type="password")
                 label Email
-                input(id='email', name="email", type="text")
+                input(id="email", name="email", type="text")
                 label Confirm email
-                input(id='emailConfirm', name="emailConfirm", type="text")
-                button(class='margin_left', id="register-button", type="submit") Register
+                input(id="email_confirm", name="email_confirm" type="text")
+                div(class="error")
+                    ul
+                button(class="margin_left", id="register-button", type="submit") Register
