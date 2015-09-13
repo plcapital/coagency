@@ -1,28 +1,28 @@
 extends ../layouts/layout
 block content
-    h1.
-        #{listing.location}
-    h2.
-        #{listing.description}
-    p
-        | Type: #{listing.type}<br>
-        | Category: #{listing.category}<br>
-        | Property: #{listing.property}<br>
-        | Area: #{listing.area}<br>
-        | Measure: #{listing.measure}<br>
-        | Price: #{listing.price}<br>
-        | Bedrooms: #{listing.bedrooms}<br>
-        | Bathrooms: #{listing.bathrooms}<br>
-        | Tenure: #{listing.tenure}
-    if comments
-        h2 Comments
-        each comment, i in comments
+    div(class="headings")
+        h1 #{listing.location}
+        h2 #{listing.description}
+    div(class="content")
+        p Type: #{listing.type}<br>
+            | Category: #{listing.category}<br>
+            | Property: #{listing.property}<br>
+            | Area: #{listing.area}<br>
+            | Measure: #{listing.measure}<br>
+            | Price: #{listing.price}<br>
+            | Bedrooms: #{listing.bedrooms}<br>
+            | Bathrooms: #{listing.bathrooms}<br>
+            | Tenure: #{listing.tenure}
+        if comments
+            h3 Comments
+            each comment, i in comments
+                div
+                    label(for="text") #{comment.userId}
+                    textarea(name="text", readonly="readonly") #{comment.text}
+    div(class="footer")
+        form(action="/createComment", method="post", name="createComment")
             div
-                label(for="text") #{comment.userId}
-                textarea(name="text", readonly="readonly") #{comment.text}
-    form(action="/createComment", method="post", name="createComment")
-        div
-            label(for="text") Comment
-            textarea(name="text")
-            input(name="listingId", readonly="readonly", type="hidden" value="#{listing._id}")
-        button(type="submit") submit
+                label(for="text") Comment
+                textarea(name="text")
+                input(name="listingId", readonly="readonly", type="hidden" value="#{listing._id}")
+            button(type="submit") submit
