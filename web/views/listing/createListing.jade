@@ -4,7 +4,12 @@ block content
         h1 Add New Listing
         h2 Share a listing Malaysia.
     div(class="content")
-        form(action="/create    Listing", class="basic-form", method="post", name="createListing")
+        if errors
+            h3 Errors
+            each error, i in errors
+                =error.msg
+                br
+        form(action="/createListing", class="basic-form", method="post", name="createListing")
             h3 Mandatory fields<br>
             div(class="basic-input")
                 label(for="coagency") Co-Agency Listing
@@ -94,8 +99,3 @@ block content
             | <br>
             button(type="submit") submit
     div(class="footer")
-        if errors
-            h3 Errors
-            each error, i in errors
-                =error.msg
-                br
