@@ -74,33 +74,45 @@ exports.createGroup = function (modelProvider) {
 
         var GroupModel = modelProvider.getModelByName('group');
 
-        var group = new GroupModel({
-            name: groupName,
-            description: groupDescription,
-            administrator: groupAdministrator
-        });
-
-        group.save(function (err) {
+        GroupModel.findOne({ name: groupName }, function (err, existingGroup) {
             if (err) {
-                res.send('There was a problem adding the information to the database.');
-            } else {
-                var GroupUserModel = modelProvider.getModelByName('groupUser');
+                res.send('find some one failed: ' + err);
+                return;
+            }
 
-                var groupUser = new GroupUserModel({
-                    userId: groupAdministrator,
-                    groupId: group._id
+            if (!existingGroup) {
+                var group = new GroupModel({
+                    name: groupName,
+                    description: groupDescription,
+                    administrator: groupAdministrator
                 });
 
-                groupUser.save(function (err) {
+                group.save(function (err) {
                     if (err) {
                         res.send('There was a problem adding the information to the database.');
                     } else {
-                        res.location('/listGroups');
-                        res.redirect('/listGroups');
+                        var GroupUserModel = modelProvider.getModelByName('groupUser');
+
+                        var groupUser = new GroupUserModel({
+                            userId: groupAdministrator,
+                            groupId: group._id
+                        });
+
+                        groupUser.save(function (err) {
+                            if (err) {
+                                res.send('There was a problem adding the information to the database.');
+                            } else {
+                                res.location('/listGroups');
+                                res.redirect('/listGroups');
+                            }
+                        });
                     }
-                });
+                })
+            } else {
+                // TODO this requires error messages displayed to the user
+                res.redirect('/');
             }
-        })
+        });
     }
 };
 
