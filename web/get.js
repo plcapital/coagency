@@ -16,7 +16,6 @@ exports.setup = function (app, modelProvider) {
     app.get('/listGroups', group.listGroupsPage(modelProvider));
     app.get('/viewGroup', group.viewGroupPage(modelProvider));
 
-    app.get('/login', login.loginPage);
     app.get('/logout', login.logoutPage);
 
     app.get('/createListing', listing.createListingPage);
@@ -26,4 +25,4 @@ exports.setup = function (app, modelProvider) {
 
     app.get('/createUser', user.createUserPage);
     app.get('/listUsers', user.listUsersPage(modelProvider)); // Admin only page
-}
+};

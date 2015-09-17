@@ -14,24 +14,18 @@ exports.login = function (modelProvider) {
                     res.redirect('/');
                 });
             } else {
-                res.render('login/login', {
-                    errorMsg: 'Authentication failed because of: ' + err
+                res.render('index', {
+                    errorMsg: 'Unable to login, please check your username and/or password'
                 });
             }
         });
     }
 };
 
-exports.loginPage = function (req, res) {
-    res.render('login/login', {
-        user: req.session.user
-    });
-};
-
 exports.logoutPage = function (req, res) {
     req.session.destroy();
 
-    res.render('login/login', {
+    res.render('index', {
         infoMsg: 'You are now logged out.'
     });
 };

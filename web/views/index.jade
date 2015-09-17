@@ -14,6 +14,10 @@ block content
                 a(href="/listGroups") My groups<br>
                 a(href="/createGroup") Create a new group<br>
         else
+            if errorMsg
+                p= errorMsg
+            if infoMsg
+                p= infoMsg
             p Sign in:
                 // This login form is duplicated from login.jade, see if there is a way to share code...
                 form(action="/login", class="login", method="post", name="login")
