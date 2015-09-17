@@ -109,8 +109,10 @@ exports.createGroup = function (modelProvider) {
                     }
                 })
             } else {
-                // TODO this requires error messages displayed to the user
-                res.redirect('/');
+                res.render('index', {
+                    user: req.session.user,
+                    errorMsg: 'Sorry, that group name has already been taken.'
+                });
             }
         });
     }
