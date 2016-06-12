@@ -9,6 +9,6 @@ exports.UserSchema = new Schema({
 });
 
 exports.GroupUserSchema = new Schema({
-	userId: String,
-	groupId: String
+    userId: String,
+    groupId: String
 })

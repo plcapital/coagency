@@ -55,7 +55,7 @@ app.configure(function () {
     app.use(app.router);
 });
 
-var ModelProvider = require('./models/modelProvider').modelProvider;
+var ModelProvider = require('./models/modelprovider').modelProvider;
 var modelProvider = new ModelProvider();
 
 gets.setup(app, modelProvider);
