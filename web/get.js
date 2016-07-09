@@ -25,4 +25,5 @@ exports.setup = function (app, modelProvider) {
 
     app.get('/createUser', user.createUserPage);
     app.get('/listUsers', user.listUsersPage(modelProvider)); // Admin only page
+    app.get('/passwordReset', user.passwordResetPage);
 };

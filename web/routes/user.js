@@ -5,7 +5,7 @@ exports.createUserPage = function (req, res) {
     res.render('user/createUser', {
         user: req.session.user
     });
-}
+};
 
 exports.createUser = function (modelProvider) {
     return function (req, res) {
@@ -38,7 +38,7 @@ exports.createUser = function (modelProvider) {
             });
         });
     }
-}
+};
 
 exports.listUsersPage = function (modelProvider) {
     return function (req, res) {
@@ -60,4 +60,8 @@ exports.listUsersPage = function (modelProvider) {
             }
         });
     }
-}
+};
+
+exports.passwordResetPage = function(req, res) {
+    res.render('user/passwordReset');
+};
