@@ -17,25 +17,33 @@ exports.createUser = function (modelProvider) {
 
         var UserModel = modelProvider.getModelByName('user');
 
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(password, salt, function(err, hash) {
-                // Submit to the DB
-                var user = new UserModel({
-                    username: username,
-                    email: email,
-                    hash: hash
-                });
+        UserModel.findOne({$or: [{username: username}, {email: email}]}, function (err, existingUser) {
+            if (err) {
+                res.send(err);
+            } else if (existingUser != null) {
+                res.send('The specified username and/or email has already been used, these must be unique.');
+            } else {
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(password, salt, function(err, hash) {
+                        // Submit to the DB
+                        var user = new UserModel({
+                            username: username,
+                            email: email,
+                            hash: hash
+                        });
 
-                user.save(function (err) {
-                    if (err) {
-                        // If it failed, return error
-                        res.send('There was a problem adding the information to the database.');
-                    } else {
-                        res.location('/listUsers');
-                        res.redirect('/listUsers');
-                    }
-                })
-            });
+                        user.save(function (err) {
+                            if (err) {
+                                // If it failed, return error
+                                res.send('There was a problem adding the information to the database.');
+                            } else {
+                                res.location('/listUsers');
+                                res.redirect('/listUsers');
+                            }
+                        })
+                    });
+                });
+            }
         });
     }
 };
